@@ -19,7 +19,9 @@ SSH_PASSWORD=MyS54Pas$word
 VIRTUAL_HOST=my-moodle-host.my-moodle-domain
 ```
 
-and then run
+and create a directory ```/data/moodle-mysql``` to hold the MySQL DB persistently.
+
+Then run
 
 ```
 docker-compose build

@@ -7,7 +7,7 @@ services:
     volumes:
       - ./my.cnf:/etc/my.cnf
       - ./start_mysql.sh:/docker-entrypoint-initdb.d/start_mysql.sh
-      - /data/up2u/mysql:/var/lib/mysql
+      - /data/moodle-mysql:/var/lib/mysql
   moodle:
     build: .
     env_file:
