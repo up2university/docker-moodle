@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 RUN apt-get -y upgrade
- 
+
 # Basic Requirements
 RUN apt-get -y install mysql-server mysql-client pwgen python-setuptools curl git unzip
 
@@ -22,6 +22,7 @@ RUN apt-get -y install openssh-server
 RUN mkdir -p /var/run/sshd
 
 # mysql config
+ADD ./my.cnf /etc/mysql/my.cnf
 RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 
 RUN easy_install supervisor
@@ -29,13 +30,16 @@ ADD ./start.sh /start.sh
 ADD ./foreground.sh /etc/apache2/foreground.sh
 ADD ./supervisord.conf /etc/supervisord.conf
 
-ADD https://download.moodle.org/moodle/moodle-latest.tgz /var/www/moodle-latest.tgz
+ADD https://download.moodle.org/download.php/direct/stable31/moodle-3.1.5.tgz /var/www/moodle-latest.tgz
 RUN cd /var/www; tar zxvf moodle-latest.tgz; mv /var/www/moodle /var/www/html
 RUN chown -R www-data:www-data /var/www/html/moodle
 RUN mkdir /var/moodledata
 RUN chown -R www-data:www-data /var/moodledata; chmod 777 /var/moodledata
 RUN chmod 755 /start.sh /etc/apache2/foreground.sh
 
+ENV MYSQL_PASSWORD ${MYSQL_PASSWORD}
+ENV MOODLE_PASSWORD ${MOODLE_PASSWORD}
+ENV SSH_PASSWORD ${SSH_PASSWORD}
+
 EXPOSE 22 80
 CMD ["/bin/bash", "/start.sh"]
-

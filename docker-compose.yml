@@ -1,0 +1,8 @@
+version: '2'
+services:
+  docker-moodle:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "80:80"
