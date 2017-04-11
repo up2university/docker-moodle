@@ -1,14 +1,28 @@
 docker-moodle
 =============
 
-A Dockerfile that installs the latest Moodle, Apache, PHP, MySQL and SSH
+A Dockerfile that installs the latest Moodle, Apache, PHP, and SSH. This uses the official MySQL images from Docker Hub.
 
 ## Installation
 
 ```
-git clone https://github.com/sergiogomez/docker-moodle.git
+git clone https://github.com/up2university/docker-moodle.git
 cd docker-moodle
-docker build -t moodle .
+```
+
+Create ```.env``` to specify local details, e.g.,
+
+```
+MYSQL_ROOT_PASSWORD=MyMy5QLPas$word
+MOODLE_PASSWORD=MyM00Dl3Pas$word
+SSH_PASSWORD=MyS54Pas$word
+VIRTUAL_HOST=my-moodle-host.my-moodle-domain
+```
+
+and then run
+
+```
+docker-compose build
 ```
 
 ## Usage
@@ -16,13 +30,13 @@ docker build -t moodle .
 To spawn a new instance of Moodle:
 
 ```
-docker run --name moodle1 -e VIRTUAL_HOST=moodle.domain.com -d -t -p 80 -p 22 moodle
+docker-compose up
 ```
 
 You can visit the following URL in a browser to get started:
 
 ```
-http://moodle.domain.com/moodle
+http://my-moodle-host.my-moodle-domain/moodle
 ```
 
-Thanks to [eugeneware](https://github.com/eugeneware) and [ricardoamaro](https://github.com/ricardoamaro) for their Dockerfiles.
+Thanks to [sergiogomez](https://github.com/sergiogomez), [eugeneware](https://github.com/eugeneware) and [ricardoamaro](https://github.com/ricardoamaro) for their Dockerfiles.
