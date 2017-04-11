@@ -1,6 +1,14 @@
 version: '2'
 services:
-  docker-moodle:
+  mysql:
+    image: mysql/mysql-server:5.5
+    env_file:
+      - .env
+    volumes:
+      - ./my.cnf:/etc/my.cnf
+      - ./start_mysql.sh:/docker-entrypoint-initdb.d/start_mysql.sh
+      - /data/up2u/mysql:/var/lib/mysql
+  moodle:
     build: .
     env_file:
       - .env
