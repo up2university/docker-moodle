@@ -1,13 +1,15 @@
 version: '2'
 services:
   mysql:
-    build: mysql
+    image: up2university/moodle-mysql:${GIT_BRANCH}
+    restart: unless-stopped
     env_file:
       - .env
     volumes:
       - /data/moodle-mysql:/var/lib/mysql
   moodle:
-    build: moodle
+    image: up2university/moodle:${GIT_BRANCH}
+    restart: unless-stopped
     links:
       - mysql
     env_file:

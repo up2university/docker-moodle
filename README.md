@@ -42,3 +42,27 @@ http://my-moodle-host.my-moodle-domain/moodle
 ```
 
 Thanks to [sergiogomez](https://github.com/sergiogomez), [eugeneware](https://github.com/eugeneware) and [ricardoamaro](https://github.com/ricardoamaro) for their Dockerfiles.
+
+## Build images
+
+Build the app and push images to Docker Hub:
+
+```
+branch=$(git rev-parse --abbrev-ref HEAD)
+docker build -t up2university/moodle-mysql:${branch} mysql
+docker push up2university/moodle-mysql:${branch}
+docker build -t up2university/moodle:${branch} moodle
+docker push up2university/moodle:${branch}
+```
+
+## Deployment
+
+For the first time put .env file on the host and add GIT_BRANCH=master, specifying which git branch should be deployed on the host.
+
+On deploy upload docker-compose-deploy.yml to the host and run the following there:
+
+```
+docker-compose -f docker-compose-deploy.yml pull
+docker-compose -f docker-compose-deploy.yml up -d
+```
+
