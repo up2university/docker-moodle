@@ -1,2 +1,5 @@
 .env
 data/
+docker-compose-local.yml
+docker-compose-backup.yml
+moodledata

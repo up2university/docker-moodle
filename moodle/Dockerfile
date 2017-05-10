@@ -32,18 +32,20 @@ ADD ./foreground.sh /etc/apache2/foreground.sh
 ADD ./supervisord.conf /etc/supervisord.conf
 
 ADD https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz /var/www/moodle-latest.tgz
-RUN cd /var/www; tar zxvf moodle-latest.tgz; mv /var/www/moodle /var/www/html
-RUN chown -R www-data:www-data /var/www/html/moodle
+RUN cd /var/www; tar zxvf moodle-latest.tgz; rm -rf /var/www/html; mv /var/www/moodle /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 RUN mkdir /var/moodledata
 RUN chown -R www-data:www-data /var/moodledata; chmod 777 /var/moodledata
 RUN chmod 755 /start.sh /etc/apache2/foreground.sh
+
+ADD ./config-dist.php /var/www/html/config-dist.php
 
 ENV MYSQL_PASSWORD ${MYSQL_ROOT_PASSWORD}
 ENV MOODLE_PASSWORD ${MOODLE_PASSWORD}
 
 RUN curl -L https://github.com/kennibc/moodle-theme_fordson/archive/master.zip -o /fordson.zip
-RUN cp /fordson.zip /var/www/html/moodle/theme/
-RUN cd /var/www/html/moodle/theme; unzip fordson.zip; mv moodle-theme_fordson-master fordson
+RUN cp /fordson.zip /var/www/html/theme/
+RUN cd /var/www/html/theme; unzip fordson.zip; mv moodle-theme_fordson-master fordson
 
 EXPOSE 22 80
 CMD ["/bin/bash", "/start.sh"]
