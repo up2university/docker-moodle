@@ -38,6 +38,8 @@ RUN mkdir /var/moodledata
 RUN chown -R www-data:www-data /var/moodledata; chmod 777 /var/moodledata
 RUN chmod 755 /start.sh /etc/apache2/foreground.sh
 
+ADD ./config-dist.php /var/www/html/config-dist.php
+
 ENV MYSQL_PASSWORD ${MYSQL_ROOT_PASSWORD}
 ENV MOODLE_PASSWORD ${MOODLE_PASSWORD}
 
