@@ -32,8 +32,8 @@ ADD ./foreground.sh /etc/apache2/foreground.sh
 ADD ./supervisord.conf /etc/supervisord.conf
 
 ADD https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz /var/www/moodle-latest.tgz
-RUN cd /var/www; tar zxvf moodle-latest.tgz; rm -rf /var/www/html; mv /var/www/moodle /var/www/html
-RUN chown -R www-data:www-data /var/www/html
+RUN cd /var/www; rm -rf /var/www/html; tar zxvf moodle-latest.tgz; mv /var/www/moodle /var/www/html
+RUN chown -R www-data:www-data /var/www/html/
 RUN mkdir /var/moodledata
 RUN chown -R www-data:www-data /var/moodledata; chmod 777 /var/moodledata
 RUN chmod 755 /start.sh /etc/apache2/foreground.sh
