@@ -13,8 +13,6 @@ if [ ! -f /var/www/html/config.php ]; then
   s/\/home\/example\/moodledata/\/var\/moodledata/" /var/www/html/config-dist.php > /var/www/html/config.php
 
   chown www-data:www-data /var/www/html/config.php
-
-
 fi
 # start all the services
 /usr/local/bin/supervisord -n
