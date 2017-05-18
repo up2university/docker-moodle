@@ -17,6 +17,8 @@ MYSQL_ROOT_PASSWORD=MyMy5QLPas$word
 MOODLE_PASSWORD=MyM00Dl3Pas$word
 SSH_PASSWORD=MyS54Pas$word
 VIRTUAL_HOST=my-moodle-host.my-moodle-domain
+CERT_EMAIL=email.to.use.f@r.letsencrypt
+CERT_DOMAIN=my-moodle-host.my-moodle-domain
 ```
 
 and create a directory ```/data/moodle-mysql``` to hold the MySQL DB persistently.
