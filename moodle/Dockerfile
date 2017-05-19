@@ -35,6 +35,7 @@ ADD ./supervisord.conf /etc/supervisord.conf
 ADD ./000-default.conf /etc/apache2/sites-available/000-default.conf
 ADD ./default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+RUN ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
 
 ADD https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz /var/www/moodle-latest.tgz
 RUN cd /var/www; rm -rf /var/www/html; tar zxvf moodle-latest.tgz; mv /var/www/moodle /var/www/html
