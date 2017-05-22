@@ -8,7 +8,7 @@ if [ ! -f /var/www/html/config.php ]; then
   s/localhost/mysql/
   s/username/moodle/
   s/password/$MOODLE_PASSWORD/
-  s/example.com\/moodle/$VIRTUAL_HOST/
+  s/http://example.com\/moodle/https://$VIRTUAL_HOST/
   s/\/var\/www\/html\/moodle/\/var\/www\/html\//
   s/\/home\/example\/moodledata/\/var\/moodledata/" /var/www/html/config-dist.php > /var/www/html/config.php
 
