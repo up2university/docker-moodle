@@ -55,7 +55,7 @@ ENV CERT_EMAIL ${CERT_EMAIL}
 ENV CERT_DOMAIN ${CERT_DOMAIN}
 
 RUN echo "certbot --non-interactive --test-cert --agree-tos --email $CERT_DOMAIN --apache --domains $CERT_DOMAIN" > /certbot-setup.sh
-RUN chmod 755 /certbot-setup.sh 
+RUN chmod 755 /certbot-setup.sh
 
 RUN curl -L https://github.com/kennibc/moodle-theme_fordson/archive/master.zip -o /fordson.zip
 RUN cp /fordson.zip /var/www/html/theme/
@@ -64,6 +64,12 @@ RUN cd /var/www/html/theme; unzip fordson.zip; mv moodle-theme_fordson-master fo
 RUN curl -L https://moodle.org/plugins/download.php/13966/auth_saml2_moodle32_2017051500.zip -o /auth_saml2.zip
 RUN cp /auth_saml2.zip /var/www/html/auth/
 RUN cd /var/www/html/auth; unzip auth_saml2.zip
+
+ADD ./pumoodle/filter.zip /var/www/html/filter/filter.zip
+RUN cd /var/www/html/filter/; unzip filter.zip
+
+ADD ./pumoodle/pmksearch.zip /var/www/html/repository/pmksearch.zip
+RUN cd /var/www/html/repository/; unzip pmksearch.zip
 
 EXPOSE 22 80 443
 CMD ["/bin/bash", "/start.sh"]
