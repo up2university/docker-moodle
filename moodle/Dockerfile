@@ -63,5 +63,12 @@ RUN curl -L https://moodle.org/plugins/download.php/13966/auth_saml2_moodle32_20
 RUN cp /auth_saml2.zip /var/www/html/auth/
 RUN cd /var/www/html/auth; unzip auth_saml2.zip
 
+ADD ./pumoodle/filter.zip /var/www/html/filter/filter.zip
+RUN cd /var/www/html/filter/; unzip filter.zip
+
+ADD ./pumoodle/pmksearch.zip /var/www/html/repository/pmksearch.zip
+RUN cd /var/www/html/repository/; unzip pmksearch.zip
+
 EXPOSE 80 443
+
 CMD ["/bin/bash", "/start.sh"]
