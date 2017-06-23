@@ -51,11 +51,9 @@ ADD ./config-dist.php /var/www/html/config-dist.php
 
 ENV MYSQL_PASSWORD ${MYSQL_ROOT_PASSWORD}
 ENV MOODLE_PASSWORD ${MOODLE_PASSWORD}
-ENV CERT_EMAIL ${CERT_EMAIL}
-ENV CERT_DOMAIN ${CERT_DOMAIN}
 
-RUN echo "certbot --non-interactive --test-cert --agree-tos --email $CERT_DOMAIN --apache --domains $CERT_DOMAIN" > /certbot-setup.sh
-RUN chmod 755 /certbot-setup.sh
+RUN echo "certbot --non-interactive --agree-tos --email \$CERT_EMAIL --apache --domains \$VIRTUAL_HOST" > /certbot-setup.sh
+RUN chmod 755 /certbot-setup.sh 
 
 RUN curl -L https://github.com/kennibc/moodle-theme_fordson/archive/master.zip -o /fordson.zip
 RUN cp /fordson.zip /var/www/html/theme/
@@ -71,5 +69,6 @@ RUN cd /var/www/html/filter/; unzip filter.zip
 ADD ./pumoodle/pmksearch.zip /var/www/html/repository/pmksearch.zip
 RUN cd /var/www/html/repository/; unzip pmksearch.zip
 
-EXPOSE 22 80 443
+EXPOSE 80 443
+
 CMD ["/bin/bash", "/start.sh"]
