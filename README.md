@@ -1,7 +1,7 @@
 docker-moodle
 =============
 
-A Dockerfile that installs the latest Moodle, Apache, PHP, and SSH. This uses the official MySQL images from Docker Hub.
+A Dockerfile that installs the latest Moodle, Apache and PHP. This uses the official MySQL images from Docker Hub.
 
 ## Installation
 
@@ -15,10 +15,8 @@ Create ```.env``` to specify local details, e.g.,
 ```
 MYSQL_ROOT_PASSWORD=MyMy5QLPas$word
 MOODLE_PASSWORD=MyM00Dl3Pas$word
-SSH_PASSWORD=MyS54Pas$word
 VIRTUAL_HOST=my-moodle-host.my-moodle-domain
 CERT_EMAIL=email.to.use.f@r.letsencrypt
-CERT_DOMAIN=my-moodle-host.my-moodle-domain
 ```
 
 and create a directory ```/data/moodle-mysql``` to hold the MySQL DB persistently.
@@ -34,16 +32,36 @@ docker-compose build
 To spawn a new instance of Moodle:
 
 ```
+docker-compose build
 docker-compose up
 ```
 
 You can visit the following URL in a browser to get started:
 
 ```
-http://my-moodle-host.my-moodle-domain/moodle
+http://my-moodle-host.my-moodle-domain/
 ```
 
 Thanks to [sergiogomez](https://github.com/sergiogomez), [eugeneware](https://github.com/eugeneware) and [ricardoamaro](https://github.com/ricardoamaro) for their Dockerfiles.
+
+## SSL certificates
+
+By default a self-signed certificate is created. It is enough for local instances.
+
+Setting up a public instance do the following:
+
+```
+docker-compose exec moodle bash
+
+rm /etc/apache2/sites-enabled/default-ssl.conf
+rm -r /etc/letsencrypt/live
+/certbot-setup.sh
+exit
+
+docker-compose restart moodle
+```
+
+To renew the certificate later just run the /certbot-setup.sh within the container.
 
 ## Build images
 
