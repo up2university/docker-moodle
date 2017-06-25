@@ -21,7 +21,8 @@ fi
 sed -i "s/::VIRTUAL_HOST::/$VIRTUAL_HOST/g" /etc/apache2/sites-available/*
 
 cert_dir=/etc/letsencrypt/live/$VIRTUAL_HOST
-if [ -e $(ls $cert_dir) ]; then
+# if $cert_dir is empty or does not exist
+if ! [ "$(ls -A $cert_dir 2> /dev/null)" ]; then
     echo "No SSL certificate found in /etc/letsencrypt/. Generating self-signed..."
     mkdir -p $cert_dir
     cd $cert_dir
