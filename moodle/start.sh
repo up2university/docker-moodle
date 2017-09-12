@@ -18,6 +18,8 @@ if [ ! -f /var/www/html/config.php ]; then
   chown www-data:www-data /var/www/html/config.php
 fi
 
+chown www-data: /var/moodledata -R
+
 sed -i "s/::VIRTUAL_HOST::/$VIRTUAL_HOST/g" /etc/apache2/sites-available/*
 
 cert_dir=/etc/letsencrypt/live/$VIRTUAL_HOST
