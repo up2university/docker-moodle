@@ -8,6 +8,9 @@ RUN ln -sf /bin/true /sbin/initctl
 # Let the conatiner know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
 
+#RUN echo "Acquire::http::proxy \"PROXY_ADDRESS/\";" > /etc/apt/apt.conf
+#RUN echo "Acquire::https::proxy \"PROXY_ADDRESS/\";" > /etc/apt/apt.conf
+
 RUN apt-get update
 RUN apt-get -y upgrade
 
@@ -25,7 +28,7 @@ RUN apt-get -y upgrade
 RUN apt-get -y install python-setuptools unzip
 
 # Moodle Requirements
-RUN apt-get -y install apache2 php5.6 php5.6-gd libapache2-mod-php5.6 postfix wget supervisor php5.6-pgsql vim curl libcurl3 libcurl3-dev php5.6-curl php5.6-xml php5.6-xmlrpc php5.6-intl php5.6-mysql php5.6-zip php5.6-mbstring php5.6-soap php5.6-mcrypt python-certbot-apache
+RUN apt-get -y install apache2 php7.0 php7.0-gd libapache2-mod-php7.0 postfix wget supervisor php7.0-pgsql vim curl libcurl3 libcurl3-dev php7.0-curl php7.0-xml php7.0-xmlrpc php7.0-intl php7.0-mysql php7.0-zip php7.0-mbstring php7.0-soap php7.0-mcrypt python-certbot-apache git
 
 RUN easy_install supervisor
 ADD ./start.sh /start.sh
@@ -40,7 +43,7 @@ RUN ln -s /etc/apache2/mods-available/ssl.conf /etc/apache2/mods-enabled/ssl.con
 RUN ln -s /etc/apache2/mods-available/socache_shmcb.load /etc/apache2/mods-enabled/socache_shmcb.load
 RUN ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
 
-ADD https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz /var/www/moodle-latest.tgz
+ADD https://download.moodle.org/download.php/direct/stable33/moodle-latest-33.tgz /var/www/moodle-latest.tgz
 RUN cd /var/www; rm -rf /var/www/html; tar zxvf moodle-latest.tgz; mv /var/www/moodle /var/www/html
 RUN chown -R www-data:www-data /var/www/html/
 RUN mkdir /var/moodledata
@@ -53,15 +56,13 @@ ENV MYSQL_PASSWORD ${MYSQL_ROOT_PASSWORD}
 ENV MOODLE_PASSWORD ${MOODLE_PASSWORD}
 
 RUN echo "certbot --non-interactive --agree-tos --email \$CERT_EMAIL --apache --domains \$VIRTUAL_HOST" > /certbot-setup.sh
-RUN chmod 755 /certbot-setup.sh 
+RUN chmod 755 /certbot-setup.sh
 
-RUN curl -L https://github.com/kennibc/moodle-theme_fordson/archive/master.zip -o /fordson.zip
+RUN curl -L https://moodle.org/plugins/download.php/14891/theme_fordson_moodle33_2017092500.zip -o /fordson.zip
 RUN cp /fordson.zip /var/www/html/theme/
-RUN cd /var/www/html/theme; unzip fordson.zip; mv moodle-theme_fordson-master fordson
+RUN cd /var/www/html/theme; unzip fordson.zip
 
-RUN curl -L https://moodle.org/plugins/download.php/13966/auth_saml2_moodle32_2017051500.zip -o /auth_saml2.zip
-RUN cp /auth_saml2.zip /var/www/html/auth/
-RUN cd /var/www/html/auth; unzip auth_saml2.zip
+RUN cd /var/www/html/auth; git clone https://github.com/catalyst/moodle-auth_saml2.git saml2
 
 ADD ./pumoodle/filter.zip /var/www/html/filter/filter.zip
 RUN cd /var/www/html/filter/; unzip filter.zip
