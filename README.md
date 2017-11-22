@@ -3,7 +3,7 @@ docker-moodle
 
 A Dockerfile that installs the latest Moodle, Apache and PHP. This uses the official MySQL images from Docker Hub.
 
-## Installation
+## Setup
 
 ```
 git clone https://github.com/up2university/docker-moodle.git
@@ -15,17 +15,11 @@ Create ```.env``` to specify local details, e.g.,
 ```
 MYSQL_ROOT_PASSWORD=MyMy5QLPas$word
 MOODLE_PASSWORD=MyM00Dl3Pas$word
-VIRTUAL_HOST=my-moodle-host.my-moodle-domain
+VIRTUAL_HOST=localhost
 CERT_EMAIL=email.to.use.f@r.letsencrypt
 ```
 
-and create a directory ```/data/moodle-mysql``` to hold the MySQL DB persistently.
-
-Then run
-
-```
-docker-compose build
-```
+and create a directory ```/data/``` to hold persistent data.
 
 ## Usage
 
@@ -39,7 +33,7 @@ docker-compose up
 You can visit the following URL in a browser to get started:
 
 ```
-http://my-moodle-host.my-moodle-domain/
+http://localhost/
 ```
 
 Thanks to [sergiogomez](https://github.com/sergiogomez), [eugeneware](https://github.com/eugeneware) and [ricardoamaro](https://github.com/ricardoamaro) for their Dockerfiles.
