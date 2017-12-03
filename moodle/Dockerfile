@@ -76,6 +76,10 @@ RUN cd /var/www/html/lib/editor/atto/plugins/; unzip pumukit.zip
 ADD ./knockplop/knockplop.zip /var/www/html/mod/
 RUN cd /var/www/html/mod/; unzip knockplop.zip; rm knockplop.zip
 
+# Install H5P - mod/hvp version 1.6 from https://moodle.org/plugins/mod_hvp
+RUN curl -L https://moodle.org/plugins/download.php/15518/mod_hvp_moodle34_2017112800.zip -o /mod_hvp.zip
+RUN cp /mod_hvp.zip /var/www/html/mod/
+RUN cd /var/www/html/mod; unzip mod_hvp.zip
 
 EXPOSE 80 443
 
