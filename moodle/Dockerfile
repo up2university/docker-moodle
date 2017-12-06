@@ -81,6 +81,33 @@ RUN curl -L https://moodle.org/plugins/download.php/15518/mod_hvp_moodle34_20171
 RUN cp /mod_hvp.zip /var/www/html/mod/
 RUN cd /var/www/html/mod; unzip mod_hvp.zip
 
+# Install language packs
+RUN mkdir /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/de.zip /var/moodledata/lang/de.zip
+RUN unzip /var/moodledata/lang/de.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/el.zip /var/moodledata/lang/el.zip
+RUN unzip /var/moodledata/lang/el.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/en.zip /var/moodledata/lang/en.zip
+RUN unzip /var/moodledata/lang/en.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/es.zip /var/moodledata/lang/es.zip
+RUN unzip /var/moodledata/lang/es.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/fr.zip /var/moodledata/lang/fr.zip
+RUN unzip /var/moodledata/lang/fr.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/he.zip /var/moodledata/lang/he.zip
+RUN unzip /var/moodledata/lang/he.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/hu.zip /var/moodledata/lang/hu.zip
+RUN unzip /var/moodledata/lang/hu.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/it.zip /var/moodledata/lang/it.zip
+RUN unzip /var/moodledata/lang/it.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/lt.zip /var/moodledata/lang/lt.zip
+RUN unzip /var/moodledata/lang/lt.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/nl.zip /var/moodledata/lang/nl.zip
+RUN unzip /var/moodledata/lang/nl.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/pl.zip /var/moodledata/lang/pl.zip
+RUN unzip /var/moodledata/lang/pl.zip -d /var/moodledata/lang
+ADD https://download.moodle.org/langpack/3.3/pt.zip /var/moodledata/lang/pt.zip
+RUN unzip /var/moodledata/lang/pt.zip -d /var/moodledata/lang
+
 EXPOSE 80 443
 
 CMD ["/bin/bash", "/start.sh"]
