@@ -81,6 +81,11 @@ RUN curl -L https://moodle.org/plugins/download.php/15518/mod_hvp_moodle34_20171
 RUN cp /mod_hvp.zip /var/www/html/mod/
 RUN cd /var/www/html/mod; unzip mod_hvp.zip
 
+# Install Plugin to use CERNBox as remote repository
+RUN git clone https://github.com/cernbox/moodle-repository_owncloud.git /var/www/html/repository/owncloud
+RUN chown -R www-data:www-data /var/www/html/repository/owncloud
+
+
 EXPOSE 80 443
 
 CMD ["/bin/bash", "/start.sh"]
