@@ -85,6 +85,14 @@ RUN cd /var/www/html/mod; unzip mod_hvp.zip
 RUN git clone https://github.com/cernbox/moodle-repository_owncloud.git /var/www/html/repository/owncloud
 RUN chown -R www-data:www-data /var/www/html/repository/owncloud
 
+# Install DSpace Sword plugin (push metadata to Dspace) 
+RUN git clone -b up2u-develop https://github.com/up2university/sword_upload.git /var/www/html/repository/sword_upload
+RUN chown -R www-data:www-data /var/www/html/repository/sword_upload
+
+# Install DSpace API plugin (pull metadata from Dspace)
+RUN git clone -b up2u https://github.com/up2university/Moodle-Dspace-Plugin.git /dspace
+RUN mv /dspace/dspace /var/www/html/repository/dspace
+RUN chown -R www-data:www-data /var/www/html/repository/dspace
 
 EXPOSE 80 443
 
