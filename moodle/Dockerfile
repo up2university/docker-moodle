@@ -73,6 +73,12 @@ RUN cd /var/www/html/repository/; unzip pmksearch.zip
 ADD ./pumoodle/pumukit.zip /var/www/html/lib/editor/atto/plugins/pumukit.zip
 RUN cd /var/www/html/lib/editor/atto/plugins/; unzip pumukit.zip
 
+ADD ./pumoodle/pumukitpr.zip /var/www/html/lib/editor/atto/plugins/pumukitpr.zip
+RUN cd /var/www/html/lib/editor/atto/plugins/; unzip pumukitpr.zip
+
+ADD ./pumoodle/filterpr.zip /var/www/html/filter/filterpr.zip
+RUN cd /var/www/html/filter/; unzip filterpr.zip
+
 ADD ./knockplop/knockplop.zip /var/www/html/mod/
 RUN cd /var/www/html/mod/; unzip knockplop.zip; rm knockplop.zip
 
