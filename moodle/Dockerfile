@@ -106,6 +106,9 @@ RUN curl -L https://github.com/xAPI-vle/moodle-logstore_xapi/releases/download/v
     && rm /xapi.zip \
     && chown -R www-data:www-data /var/www/html/admin/tool/log/store/xapi
 
+ADD crontab /crontab
+RUN crontab -u www-data /crontab
+
 EXPOSE 80 443
 
 CMD ["/bin/bash", "/start.sh"]
