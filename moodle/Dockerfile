@@ -100,6 +100,12 @@ RUN git clone -b up2u https://github.com/up2university/Moodle-Dspace-Plugin.git 
 RUN mv /dspace/dspace /var/www/html/repository/dspace
 RUN chown -R www-data:www-data /var/www/html/repository/dspace
 
+# Install logstore_xapi plugin to send learning records to LRS
+RUN curl -L https://github.com/xAPI-vle/moodle-logstore_xapi/releases/download/v2.2.3/xapi.zip -o /xapi.zip \
+    && unzip /xapi.zip -d /var/www/html/admin/tool/log/store/ \
+    && rm /xapi.zip \
+    && chown -R www-data:www-data /var/www/html/admin/tool/log/store/xapi
+
 EXPOSE 80 443
 
 CMD ["/bin/bash", "/start.sh"]
