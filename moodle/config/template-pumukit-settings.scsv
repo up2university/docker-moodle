@@ -1,0 +1,13 @@
+'';'filter_pumukitpr_secret'; ${PUMUKIT_PR_SECRET}
+'';'reposecretkey'; ${REPOSECRETKEY}
+'';'filter_pumukit_secret'; ${PUMUKIT_SECRET}
+'';'iframe_singlevideo_width'; "592px"
+'';'iframe_singlevideo_height'; "333px"
+'';'iframe_multivideo_width'; "592px"
+'';'iframe_multivideo_height'; "333px"
+'';'media_plugins_sortorder'; "videojs,youtube,swf"
+'pmksearch';'enablecourseinstances'; 1
+'pmksearch';'enableuserinstances'; 0
+'atto_pumukit';'pumukiturl'; ${PUMUKIT_URL}
+'atto_pumukitpr';'dialogtitle'; "Add Personal Repository video"
+'editor_atto';'toolbar'; "collapse = collapse,style1 = title, bold, italic,list = unorderedlist, orderedlist,links = link,files = image, media, managefiles, pumukit, pumukitpr,style2 = underline, strike, subscript, superscript,align = align,indent = indent,insert = equation, charmap, table, clear,undo = undo,accessibility = accessibilitychecker, accessibilityhelper"
