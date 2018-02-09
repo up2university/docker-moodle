@@ -18,8 +18,11 @@ MOODLE_PASSWORD=MyM00Dl3Pas$word
 VIRTUAL_HOST=localhost
 CERT_EMAIL=email.to.use.f@r.letsencrypt
 ```
+and create and populate ```/envs/``` with .env files for automatic 
+configuration of any needed tools/integrations (Up2U examples in 
+private repository; public templates coming soon)
 
-and create a directory ```/data/``` to hold persistent data.
+Create a directory ```/data/``` to hold persistent data.
 
 ## Usage
 
@@ -29,11 +32,18 @@ To spawn a new instance of Moodle:
 docker-compose build
 docker-compose up
 ```
+and, in a separate terminal, once the Docker containers are running,
+
+```
+docker-compose exec moodle /configure.sh
+docker-compose exec mysql /configure.sh
+```
+to configure from the ```/envs/``` directory. 
 
 You can visit the following URL in a browser to get started:
 
 ```
-http://localhost/
+https://localhost/
 ```
 
 Thanks to [sergiogomez](https://github.com/sergiogomez), [eugeneware](https://github.com/eugeneware) and [ricardoamaro](https://github.com/ricardoamaro) for their Dockerfiles.

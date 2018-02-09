@@ -25,10 +25,11 @@ RUN apt-get -y upgrade
 
 # Basic Requirements
 #RUN apt-get -y install mysql-server mysql-client pwgen python-setuptools curl git unzip
-RUN apt-get -y install python-setuptools unzip
+RUN apt-get update
+RUN apt-get -y install python-setuptools unzip gettext
 
 # Moodle Requirements
-RUN apt-get -y install apache2 php7.0 php7.0-gd libapache2-mod-php7.0 postfix wget supervisor php7.0-pgsql vim curl libcurl3 libcurl3-dev php7.0-curl php7.0-xml php7.0-xmlrpc php7.0-intl php7.0-mysql php7.0-zip php7.0-mbstring php7.0-soap php7.0-mcrypt python-certbot-apache git
+RUN apt-get -y install apache2 php7.0 php7.0-gd libapache2-mod-php7.0 postfix wget supervisor php7.0-pgsql vim curl libcurl3 libcurl3-dev php7.0-curl php7.0-xml php7.0-xmlrpc php7.0-intl php7.0-mysql php7.0-zip php7.0-mbstring php7.0-soap php7.0-mcrypt certbot python-certbot-apache git
 
 RUN easy_install supervisor
 ADD ./start.sh /start.sh
@@ -91,7 +92,7 @@ RUN cd /var/www/html/mod; unzip mod_hvp.zip
 RUN git clone https://github.com/cernbox/moodle-repository_owncloud.git /var/www/html/repository/owncloud
 RUN chown -R www-data:www-data /var/www/html/repository/owncloud
 
-# Install DSpace Sword plugin (push metadata to Dspace) 
+# Install DSpace Sword plugin (push metadata to Dspace)
 RUN git clone -b up2u-develop https://github.com/up2university/sword_upload.git /var/www/html/repository/sword_upload
 RUN chown -R www-data:www-data /var/www/html/repository/sword_upload
 
@@ -108,6 +109,14 @@ RUN curl -L https://github.com/xAPI-vle/moodle-logstore_xapi/releases/download/v
 
 ADD crontab /crontab
 RUN crontab -u www-data /crontab
+
+ADD https://moodle.org/plugins/download.php/15063/moosh_moodle33_2017101600.zip /moosh.zip
+ADD https://gist.githubusercontent.com/nadavkav/2e016eb5cdf5634f8d9a4ed02ed32ebb/raw/22ebd3615992bebfc9ca979955f92e0b4a7c0113/Moosh_Command_Moodle23_Config_ConfigGet.php /Moosh_Command_Moodle23_Config_ConfigGet.php
+RUN unzip /moosh.zip && chmod a+x /moosh/moosh.php && cp /Moosh_Command_Moodle23_Config_ConfigGet.php /moosh/Moosh/Command/Moodle23/Config/ConfigGet.php
+
+ADD config/ /config
+ADD configure.sh /configure.sh
+RUN chmod a+x /configure.sh
 
 EXPOSE 80 443
 
