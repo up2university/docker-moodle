@@ -10,17 +10,15 @@ git clone https://github.com/up2university/docker-moodle.git
 cd docker-moodle
 ```
 
-Create ```.env``` to specify local details, e.g.,
+Populate ```envs/``` (based on the contents of ```envs-templates/```) to specify local details, especially ```common.env```:
 
 ```
 MYSQL_ROOT_PASSWORD=MyMy5QLPas$word
 MOODLE_PASSWORD=MyM00Dl3Pas$word
 VIRTUAL_HOST=localhost
-CERT_EMAIL=email.to.use.f@r.letsencrypt
 ```
-and create and populate ```/envs/``` with .env files for automatic 
-configuration of any needed tools/integrations (Up2U examples in 
-private repository; public templates coming soon)
+and fill out other ```.env``` files from ```/envs-templates``` for automatic
+configuration of any needed tools/integrations.
 
 Create a directory ```/data/``` to hold persistent data.
 
@@ -38,7 +36,7 @@ and, in a separate terminal, once the Docker containers are running,
 docker-compose exec moodle /configure.sh
 docker-compose exec mysql /configure.sh
 ```
-to configure from the ```/envs/``` directory. 
+to configure from the ```/envs/``` directory.
 
 You can visit the following URL in a browser to get started:
 
@@ -52,7 +50,13 @@ Thanks to [sergiogomez](https://github.com/sergiogomez), [eugeneware](https://gi
 
 By default a self-signed certificate is created. It is enough for local instances.
 
-Setting up a public instance do the following:
+Setting up a public instance, edit ```envs/common.env``` to includes
+
+```
+CURL_OPTS='-k'
+```
+
+and do the following:
 
 ```
 docker-compose exec moodle bash
@@ -89,4 +93,3 @@ On deploy upload docker-compose-deploy.yml to the host and run the following the
 docker-compose -f docker-compose-deploy.yml pull
 docker-compose -f docker-compose-deploy.yml up -d
 ```
-
