@@ -40,7 +40,25 @@ CREATE TABLE IF NOT EXISTS `mdl_oauth2_endpoint` (
 
 
 /*!40000 ALTER TABLE `mdl_oauth2_endpoint` DISABLE KEYS */;
-INSERT INTO `mdl_oauth2_endpoint` (timecreated, timemodified, usermodified, name, url, issuerid) VALUES (1516290735,1516710552,69,'token_endpoint','${CERNBOX_TOKEN_ENDPOINT}',(SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1)),(1516290755,1516710561,69,'authorization_endpoint','${CERNBOX_AUTHORIZE_ENDPOINT}',(SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1)),(1516290774,1516710570,69,'webdav_endpoint','${CERNBOX_WEBDAV_ENDPOINT}',(SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1)),(1516290794,1516711057,69,'ocs_endpoint','${CERNBOX_OCS_ENDPOINT}',(SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1));
+START TRANSACTION;
+DELETE FROM `mdl_oauth2_endpoint` WHERE name='token_endpoint' AND
+  issuerid=(SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1);
+DELETE FROM `mdl_oauth2_endpoint` WHERE name='authorization_endpoint' AND
+  issuerid=(SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1);
+DELETE FROM `mdl_oauth2_endpoint` WHERE name='webdav_endpoint' AND
+  issuerid=(SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1);
+DELETE FROM `mdl_oauth2_endpoint` WHERE name='ocs_endpoint' AND 
+  issuerid=(SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1);
+INSERT INTO `mdl_oauth2_endpoint` (timecreated, timemodified, usermodified, name, url, issuerid) VALUES
+(1516290735,1516710552,69,'token_endpoint','${CERNBOX_TOKEN_ENDPOINT}',
+  (SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1)),
+(1516290755,1516710561,69,'authorization_endpoint','${CERNBOX_AUTHORIZE_ENDPOINT}',
+  (SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1)),
+(1516290774,1516710570,69,'webdav_endpoint','${CERNBOX_WEBDAV_ENDPOINT}',
+  (SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1)),
+(1516290794,1516711057,69,'ocs_endpoint','${CERNBOX_OCS_ENDPOINT}',
+  (SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.name='${CERNBOX_NAME}' LIMIT 1));
+COMMIT;
 /*!40000 ALTER TABLE `mdl_oauth2_endpoint` ENABLE KEYS */;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

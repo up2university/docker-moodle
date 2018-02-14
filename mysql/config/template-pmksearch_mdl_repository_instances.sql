@@ -54,9 +54,11 @@ WHERE NOT EXISTS (SELECT id FROM `mdl_repository`
 COMMIT;
 
 START TRANSACTION;
+DELETE FROM `mdl_repository_instances` WHERE name='${PMKSEARCH_REPO_NAME}' AND
+typeid=(SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${PMKSEARCH_REPOSITORY_TYPE}' LIMIT 1);
 INSERT INTO `mdl_repository_instances` (name, typeid, userid, contextid, username, password, timecreated, timemodified,readonly)
 SELECT '${PMKSEARCH_REPO_NAME}', (SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${PMKSEARCH_REPOSITORY_TYPE}' LIMIT 1),0,1,NULL,NULL,1516380035,1516380035,0
-FROM `mdl_repository_instances`
+FROM `mdl_repository`
 WHERE EXISTS (SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${PMKSEARCH_REPOSITORY_TYPE}' LIMIT 1) LIMIT 1;
 COMMIT;
 /*!40000 ALTER TABLE `mdl_repository_instances` ENABLE KEYS */;

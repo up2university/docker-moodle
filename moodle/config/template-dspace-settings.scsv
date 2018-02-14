@@ -2,11 +2,6 @@
 'dspace';'enablecourseinstances'; 0
 'dspace';'enableuserinstances'; 0
 'dspace';'pluginname'; "UP2U Repository"
-;;
-;;
-'sword_upload';'sword_url'; ${DSPACE_SWORD_URL}
-'sword_upload';'sword_username'; ${DSPACE_SWORD_USERNAME}
-'sword_upload';'sword_password'; ${DSPACE_SWORD_PASSWORD}
 'sword_upload';'enablecourseinstances'; 0
 'sword_upload';'enableuserinstances'; 0
 'sword_upload';'pluginname'; "Push to Up2u Repository"

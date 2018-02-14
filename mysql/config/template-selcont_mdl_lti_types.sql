@@ -49,8 +49,11 @@ CREATE TABLE IF NOT EXISTS`mdl_lti_types` (
 
 
 /*!40000 ALTER TABLE `mdl_lti_types` DISABLE KEYS */;
+START TRANSACTION;
+DELETE FROM `mdl_lti_types_config` WHERE typeid=(SELECT id FROM `mdl_lti_types` WHERE mdl_lti_types.name='${SELCONT_TOOL_NAME}' LIMIT 1);
 DELETE FROM `mdl_lti_types` WHERE name='${SELCONT_TOOL_NAME}';
 INSERT INTO `mdl_lti_types` (name, baseurl, tooldomain, state, course, coursevisible, toolproxyid, enabledcapability, parameter, icon, secureicon, createdby, timecreated, timemodified, description) VALUES ('${SELCONT_TOOL_NAME}','${SELCONT_KEY_URL}','${SELCONT_URL}',1,1,2,NULL,NULL,NULL,'','',22,1498662767,1513846790,'LTI SeLCont Tool');
+COMMIT;
 /*!40000 ALTER TABLE `mdl_lti_types` ENABLE KEYS */;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
