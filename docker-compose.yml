@@ -5,6 +5,7 @@ services:
     env_file:
       - .env
     volumes:
+      - ./envs:/envs
       - /data/moodle-mysql:/var/lib/mysql
   moodle:
     build: moodle
@@ -16,4 +17,5 @@ services:
       - "80:80"
       - "443:443"
     volumes:
+      - ./envs:/envs
       - /data/letsencrypt:/etc/letsencrypt
