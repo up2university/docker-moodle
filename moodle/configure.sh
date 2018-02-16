@@ -45,8 +45,8 @@ if [ "${OLD_STAT}" != "${NEW_STAT}" ] || [ "${FIRST_RUN}" == "yes" ]; then
 
   cat ${ALL_FILES} | sed "s/^M//g" | tr -d '\r' | sed 's/^;;$//g' | egrep -v '^$' >> /settings.scsv
 
-  if [ -f /moosh-settings.php ]; then
-    rm /moosh-settings.php
+  if [ -f /moosh-settings.sh ]; then
+    rm /moosh-settings.sh
   fi
 
   if [ -f /moodle-default-settings.php ]; then
