@@ -87,6 +87,21 @@ RUN curl -L https://moodle.org/plugins/download.php/15518/mod_hvp_moodle34_20171
 RUN cp /mod_hvp.zip /var/www/html/mod/
 RUN cd /var/www/html/mod; unzip mod_hvp.zip
 
+# Install EJSapp pack - mod/ejsapp version 3.0 from https://moodle.org/plugins/mod_ejsapp
+RUN curl -L https://moodle.org/plugins/download.php/14370/mod_ejsapp_moodle34_2017062607.zip -o /mod_ejsapp.zip
+RUN cp /mod_ejsapp.zip /var/www/html/mod/
+RUN cd /var/www/html/mod; unzip mod_ejsapp.zip
+
+# Install EJSapp repository - repository/osp version 3.0 from https://moodle.org/plugins/repository_osp
+RUN curl -L https://moodle.org/plugins/download.php/13971/repository_osp_moodle34_2017051403.zip -o /repository_osp.zip
+RUN cp /repository_osp.zip /var/www/html/repository/
+RUN cd /var/www/html/repository; unzip repository_osp.zip
+
+# Install EJSapp remote lab manager - block/remlab_manager version 3.0 from https://moodle.org/plugins/block_remlab_manager
+RUN curl -L https://moodle.org/plugins/download.php/13982/block_remlab_manager_moodle34_2017051500.zip -o /block_remlab_manager.zip
+RUN cp /block_remlab_manager.zip /var/www/html/block/
+RUN cd /var/www/html/block; unzip block_remlab_manager.zip
+
 # Install Plugin to use CERNBox as remote repository
 RUN git clone https://github.com/cernbox/moodle-repository_owncloud.git /var/www/html/repository/owncloud
 RUN chown -R www-data:www-data /var/www/html/repository/owncloud
