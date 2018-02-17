@@ -99,8 +99,8 @@ RUN cd /var/www/html/repository; unzip repository_osp.zip
 
 # Install EJSapp remote lab manager - block/remlab_manager version 3.0 from https://moodle.org/plugins/block_remlab_manager
 RUN curl -L https://moodle.org/plugins/download.php/13982/block_remlab_manager_moodle34_2017051500.zip -o /block_remlab_manager.zip
-RUN cp /block_remlab_manager.zip /var/www/html/block/
-RUN cd /var/www/html/block; unzip block_remlab_manager.zip
+RUN cp /block_remlab_manager.zip /var/www/html/blocks/
+RUN cd /var/www/html/blocks; unzip block_remlab_manager.zip
 
 # Install Plugin to use CERNBox as remote repository
 RUN git clone https://github.com/cernbox/moodle-repository_owncloud.git /var/www/html/repository/owncloud
