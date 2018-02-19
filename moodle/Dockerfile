@@ -87,6 +87,11 @@ RUN curl -L https://moodle.org/plugins/download.php/15518/mod_hvp_moodle34_20171
 RUN cp /mod_hvp.zip /var/www/html/mod/
 RUN cd /var/www/html/mod; unzip mod_hvp.zip
 
+# Install Easy Enrollments - enrol/easy version 1.1 from https://moodle.org/plugins/enrol_easy
+RUN curl -L https://moodle.org/plugins/download.php/14067/enrol_easy_moodle34_2017052300.zip -o /enrol_easy.zip
+RUN cp /enrol_easy.zip /var/www/html/enrol/
+RUN cd /var/www/html/enrol; unzip enrol_easy.zip; rm enrol_easy.zip
+
 # Install Plugin to use CERNBox as remote repository
 RUN git clone https://github.com/cernbox/moodle-repository_owncloud.git /var/www/html/repository/owncloud
 RUN chown -R www-data:www-data /var/www/html/repository/owncloud
