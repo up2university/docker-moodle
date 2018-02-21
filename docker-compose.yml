@@ -19,3 +19,4 @@ services:
     volumes:
       - ./envs:/envs
       - /data/letsencrypt:/etc/letsencrypt
+      - /data/moodle-moodledata:/var/moodledata
