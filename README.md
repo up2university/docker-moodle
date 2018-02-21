@@ -20,7 +20,7 @@ VIRTUAL_HOST=localhost
 and fill out other ```.env``` files from ```/envs-templates``` for automatic
 configuration of any needed tools/integrations.
 
-Create a directory ```/data/``` to hold persistent data.
+Create a directory ```./data/``` to hold persistent data.
 
 ## Usage
 

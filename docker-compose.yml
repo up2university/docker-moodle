@@ -6,7 +6,7 @@ services:
       - envs/common.env
     volumes:
       - ./envs:/envs
-      - /data/moodle-mysql:/var/lib/mysql
+      - ./data/moodle-mysql:/var/lib/mysql
   moodle:
     build: moodle
     links:
@@ -18,5 +18,5 @@ services:
       - "443:443"
     volumes:
       - ./envs:/envs
-      - /data/letsencrypt:/etc/letsencrypt
-      - /data/moodle-moodledata:/var/moodledata
+      - ./data/letsencrypt:/etc/letsencrypt
+      - ./data/moodle-moodledata:/var/moodledata
