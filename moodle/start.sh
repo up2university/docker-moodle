@@ -18,8 +18,6 @@ if [ ! -f /var/www/html/config.php ]; then
   chown www-data:www-data /var/www/html/config.php
 fi
 
-
-
 chown www-data: /var/moodledata -R
 
 sed -i "s/::VIRTUAL_HOST::/$VIRTUAL_HOST/g" /etc/apache2/sites-available/*
@@ -36,7 +34,6 @@ if ! [ "$(ls -A $cert_dir 2> /dev/null)" ]; then
     openssl x509 -req -days 1000 -in csr -signkey privkey.pem -out cert.pem
     echo " " > /etc/letsencrypt/live/$VIRTUAL_HOST/chain.pem
 fi
-
 
 # start all the services
 /usr/local/bin/supervisord -n
