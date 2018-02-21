@@ -85,7 +85,11 @@ docker push up2university/moodle:${branch}
 
 ## Deployment
 
-For the first time put .env file on the host and add GIT_BRANCH=master, specifying which git branch should be deployed on the host.
+For the first time put .env file on the host and add DOCKER_TAG=value, specifying which git branch or commit should be deployed on the host. 
+Docker images are created for both branches and particular commits, for instance:
+
+* DOCKER_TAG=develop
+* DOCKER_TAG=commit-985d87ac2b69c119058a5d290c250e09ed79962b
 
 On deploy upload docker-compose-deploy.yml to the host and run the following there:
 
