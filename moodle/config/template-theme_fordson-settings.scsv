@@ -1,0 +1,33 @@
+'';'theme'; "fordson"
+'core_admin';'logo'; ${THEME_FORDSON_MOODLE_LOGO}
+'core_admin';'logocompact'; ${THEME_FORDSON_MOODLE_LOGO_COMPACT}
+'theme_fordson';'activitymenu'; 1
+'theme_fordson';'bodybackground'; "#F1F1F1"
+'theme_fordson';'brandprimary'; "#f26522"
+'theme_fordson';'brandsuccess'; "#f26522"
+'theme_fordson';'brandwarning'; "#f7941e"
+'theme_fordson';'cardbkg'; "#ffffff"
+'theme_fordson';'courseeditingcog'; 1
+'theme_fordson';'createbuttonurl'; ${THEME_FORDSON_CREATE_BUTTON_URL} 
+'theme_fordson';'drawerbkg'; "#F1F1F1"
+'theme_fordson';'fpiconcolour'; "#ffffff"
+'theme_fordson';'fpiconnavhover'; "#f26522"
+'theme_fordson';'fpstartwrap'; "#ffffff"
+'theme_fordson';'headercolor'; "#000000"
+'theme_fordson';'headerdefaultimage'; ${THEME_FORDSON_HEADER_DEFAULT_IMAGE}
+'theme_fordson';'headerimagepadding'; "600px"
+'theme_fordson';'headerscreen'; "#F1F1F1"
+'theme_fordson';'headingcolor'; "#f26522"
+'theme_fordson';'learningcontentpadding'; "175px"
+'theme_fordson';'linkcolor'; "#f7941e"
+'theme_fordson';'nav1buttonurl'; ${THEME_FORDSON_NAV1_BUTTON_URL} 
+'theme_fordson';'nav2buttonurl'; ${THEME_FORDSON_NAV2_BUTTON_URL} 
+'theme_fordson';'nav3buttonurl'; ${THEME_FORDSON_NAV3_BUTTON_URL} 
+'theme_fordson';'nav4buttonurl'; ${THEME_FORDSON_NAV4_BUTTON_URL} 
+'theme_fordson';'navbarbkg'; "#ffffff"
+'theme_fordson';'navbarurl'; "#000000"
+'theme_fordson';'searchtoggle'; 0
+'theme_fordson';'slide1content'; \'<p><img src="https://moodle.abtech.edu/pluginfile.php/222513/mod_label/intro/Moodle%20logo.png" alt="Moodle_logo" width="4010" height="1023" class="img-responsive atto_image_button_text-bottom"><br></p>\'
+'theme_fordson';'slide1title'; "Slideshow test 1"
+'theme_fordson';'titletooltip'; 1
+'theme_fordson';'website'; ${THEME_FORDSON_UP2U_URL}

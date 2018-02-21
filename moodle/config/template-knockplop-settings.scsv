@@ -1,0 +1,3 @@
+'';'chat_serverhost'; ${WWWROOT}
+'';'knockplop_baseurl'; ${KNOCKPLOP_BASEURL}
+'';'knockplop_roomlength'; 8
