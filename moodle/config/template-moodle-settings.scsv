@@ -4,6 +4,8 @@
 '';'blockeditingmenu'; 1
 '';'pathtounoconv'; "/usr/bin/unoconv"
 '';'noreplyaddress'; ${NO_REPLY_ADDRESS}
+'';'usesitenameforsitepages';1
+'';'defaultblocks';${MOODLE_DEFAULT_BLOCKS}
 'moodlecourse';'enablecompletion'; 0
 'googledocs';'documentformat'; "rtf"
 'googledocs';'drawingformat'; "pdf"
