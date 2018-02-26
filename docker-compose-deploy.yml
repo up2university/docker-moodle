@@ -1,15 +1,15 @@
 version: '2'
 services:
   mysql:
-    image: up2university/moodle-mysql:${GIT_BRANCH}
+    image: up2university/moodle-mysql:${DOCKER_TAG}
     restart: unless-stopped
     env_file:
       - envs/common.env
     volumes:
       - ./envs:/envs
-      - /data/moodle-mysql:/var/lib/mysql
+      - ./data/moodle-mysql:/var/lib/mysql
   moodle:
-    image: up2university/moodle:${GIT_BRANCH}
+    image: up2university/moodle:${DOCKER_TAG}
     restart: unless-stopped
     links:
       - mysql
@@ -20,5 +20,5 @@ services:
       - "443:443"
     volumes:
       - ./envs:/envs
-      - /data/letsencrypt:/etc/letsencrypt
-      - /data/moodle-moodledata:/var/moodledata
+      - ./data/letsencrypt:/etc/letsencrypt
+      - ./data/moodle-moodledata:/var/moodledata
