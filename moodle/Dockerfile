@@ -13,7 +13,7 @@ RUN apt-get update \
         software-properties-common \
         python-software-properties \
     && apt-key adv --keyserver "hkp://keyserver.ubuntu.com:80" --recv 'E5267A6C' \
-    && add-apt-repository ppa:ondrej/php \
+    && LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php \
     && add-apt-repository ppa:certbot/certbot \
     && apt-get update \
     && apt-get install -y \
