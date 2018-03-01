@@ -1,0 +1,24 @@
+'';'auth'; "saml2,email"
+'auth_saml2';'anyauth'; 1
+'auth_saml2';'autocreate'; 1
+'auth_saml2';'debug'; 1
+'auth_saml2';'duallogin'; 1
+'auth_saml2';'entityid'; ${SSO_METADATA_URL}
+'auth_saml2';'field_lock_email'; "unlockedifempty"
+'auth_saml2';'field_lock_firstname'; "unlockedifempty"
+'auth_saml2';'field_lock_lastname'; "unlockedifempty"
+'auth_saml2';'field_map_alternatename'; "displayName"
+'auth_saml2';'field_map_country'; "countryName"
+'auth_saml2';'field_map_email'; "mail"
+'auth_saml2';'field_map_firstname'; "givenName"
+'auth_saml2';'field_map_institution'; "o"
+'auth_saml2';'field_map_lastname'; "sn"
+'auth_saml2';'field_updatelocal_email'; "onlogin"
+'auth_saml2';'field_updatelocal_firstname'; "onlogin"
+'auth_saml2';'field_updatelocal_lastname'; "onlogin"
+'auth_saml2';'idpattr'; "uid"
+'auth_saml2';'idpdefaultname'; "Login via SAML2"
+'auth_saml2';'idpmetadata'; ${SSO_METADATA_URL}
+'auth_saml2';'mdlattr'; "username"
+'auth_saml2';'showidplink'; 1
+'auth_saml2';'spmetadatasign'; 1

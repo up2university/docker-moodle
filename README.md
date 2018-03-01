@@ -10,16 +10,17 @@ git clone https://github.com/up2university/docker-moodle.git
 cd docker-moodle
 ```
 
-Create ```.env``` to specify local details, e.g.,
+Populate ```envs/``` (based on the contents of ```envs-templates/```) to specify local details, especially ```common.env```:
 
 ```
 MYSQL_ROOT_PASSWORD=MyMy5QLPas$word
 MOODLE_PASSWORD=MyM00Dl3Pas$word
 VIRTUAL_HOST=localhost
-CERT_EMAIL=email.to.use.f@r.letsencrypt
 ```
+and fill out other ```.env``` files from ```/envs-templates``` for automatic
+configuration of any needed tools/integrations.
 
-and create a directory ```/data/``` to hold persistent data.
+Create a directory ```./data/``` to hold persistent data.
 
 ## Usage
 
@@ -29,11 +30,18 @@ To spawn a new instance of Moodle:
 docker-compose build
 docker-compose up
 ```
+and, in a separate terminal, once the Docker containers are running,
+
+```
+docker-compose exec moodle /configure.sh
+docker-compose exec mysql /configure.sh
+```
+to configure from the ```/envs/``` directory.
 
 You can visit the following URL in a browser to get started:
 
 ```
-http://localhost/
+https://localhost/
 ```
 
 Thanks to [sergiogomez](https://github.com/sergiogomez), [eugeneware](https://github.com/eugeneware) and [ricardoamaro](https://github.com/ricardoamaro) for their Dockerfiles.
@@ -42,7 +50,13 @@ Thanks to [sergiogomez](https://github.com/sergiogomez), [eugeneware](https://gi
 
 By default a self-signed certificate is created. It is enough for local instances.
 
-Setting up a public instance do the following:
+Setting up a public instance, edit ```envs/common.env``` to includes
+
+```
+CURL_OPTS='-k'
+```
+
+and do the following:
 
 ```
 docker-compose exec moodle bash
@@ -71,7 +85,11 @@ docker push up2university/moodle:${branch}
 
 ## Deployment
 
-For the first time put .env file on the host and add GIT_BRANCH=master, specifying which git branch should be deployed on the host.
+For the first time put .env file on the host and add DOCKER_TAG=value, specifying which git branch or commit should be deployed on the host. 
+Docker images are created for both branches and particular commits, for instance:
+
+* DOCKER_TAG=develop
+* DOCKER_TAG=commit-985d87ac2b69c119058a5d290c250e09ed79962b
 
 On deploy upload docker-compose-deploy.yml to the host and run the following there:
 
@@ -79,4 +97,3 @@ On deploy upload docker-compose-deploy.yml to the host and run the following the
 docker-compose -f docker-compose-deploy.yml pull
 docker-compose -f docker-compose-deploy.yml up -d
 ```
-

@@ -1,0 +1,7 @@
+'dspace';'dspace_url'; ${DSPACE_API_URL}
+'dspace';'enablecourseinstances'; 0
+'dspace';'enableuserinstances'; 0
+'dspace';'pluginname'; "UP2U Repository"
+'sword_upload';'enablecourseinstances'; 0
+'sword_upload';'enableuserinstances'; 0
+'sword_upload';'pluginname'; "Push to Up2u Repository"

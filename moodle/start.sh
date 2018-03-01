@@ -3,10 +3,7 @@ set -e
 set -u
 
 if [ ! -f /var/www/html/config.php ]; then
-  #mysql has to be started this way as it doesn't work to call from /etc/init.d
-  /usr/bin/mysqld_safe &
   sleep 10s
-  MOODLE_DB="moodle"
   sed -e "s/pgsql/mysqli/
   s/localhost/mysql/
   s/username/moodle/
@@ -17,6 +14,8 @@ if [ ! -f /var/www/html/config.php ]; then
 
   chown www-data:www-data /var/www/html/config.php
 fi
+
+
 
 chown www-data: /var/moodledata -R
 
@@ -34,6 +33,7 @@ if ! [ "$(ls -A $cert_dir 2> /dev/null)" ]; then
     openssl x509 -req -days 1000 -in csr -signkey privkey.pem -out cert.pem
     echo " " > /etc/letsencrypt/live/$VIRTUAL_HOST/chain.pem
 fi
+
 
 # start all the services
 /usr/local/bin/supervisord -n
