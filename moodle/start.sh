@@ -3,10 +3,7 @@ set -e
 set -u
 
 if [ ! -f /var/www/html/config.php ]; then
-  #mysql has to be started this way as it doesn't work to call from /etc/init.d
-  /usr/bin/mysqld_safe &
   sleep 10s
-  MOODLE_DB="moodle"
   sed -e "s/pgsql/mysqli/
   s/localhost/mysql/
   s/username/moodle/
