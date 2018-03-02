@@ -123,6 +123,13 @@ RUN cd /var/www/html/mod \
     && unzip mod_hvp.zip \
     && rm mod_hvp.zip
 
+# Install Category_Enrol (block) - blocks/category_enrol version 0.1 from https://github.com/iucc/moodle-block_category_enrol
+RUN cd /var/www/html/blocks \
+    && curl -L https://github.com/iucc/moodle-block_category_enrol/archive/81d87d54ddf018ac28fd6403f890de3b4578d24a.zip -o block_category_enrol.zip \
+    && unzip block_category_enrol.zip \
+    && mv moodle-block_category_enrol* category_enrol \
+    && rm block_category_enrol.zip
+    
 # Install Easy Enrollments - enrol/easy version 1.1 from https://moodle.org/plugins/enrol_easy
 RUN cd /var/www/html/enrol \
     && curl -L https://moodle.org/plugins/download.php/14067/enrol_easy_moodle34_2017052300.zip -o enrol_easy.zip \
