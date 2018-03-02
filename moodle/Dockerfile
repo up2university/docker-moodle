@@ -125,9 +125,9 @@ RUN cd /var/www/html/mod \
 
 # Install Category_Enrol (block) - blocks/category_enrol version 0.1 from https://github.com/iucc/moodle-block_category_enrol
 RUN cd /var/www/html/blocks \
-    && curl -L https://github.com/iucc/moodle-block_category_enrol/archive/master.zip -o block_category_enrol.zip \
+    && curl -L https://github.com/iucc/moodle-block_category_enrol/archive/81d87d54ddf018ac28fd6403f890de3b4578d24a.zip -o block_category_enrol.zip \
     && unzip block_category_enrol.zip \
-    && mv moodle-block_category_enrol-master category_enrol \
+    && mv moodle-block_category_enrol* category_enrol \
     && rm block_category_enrol.zip
     
 # Install Easy Enrollments - enrol/easy version 1.1 from https://moodle.org/plugins/enrol_easy
