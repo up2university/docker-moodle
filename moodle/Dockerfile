@@ -64,10 +64,10 @@ RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rew
     && ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
 
 RUN cd /var/www \
-    && wget https://download.moodle.org/download.php/direct/stable33/moodle-latest-33.tgz -O moodle-latest.tgz \
-    && tar zxvf moodle-latest.tgz \
+    && curl 'https://git.moodle.org/gw?p=moodle.git;a=snapshot;h=2faddcdef50d655c3c6c06a6ae03425c1178be42;sf=tgz' -o moodle-latest.tgz \
+    && tar zxf moodle-latest.tgz \
     && rm moodle-latest.tgz \
-    && mv /var/www/moodle /var/www/html \
+    && mv /var/www/moodle* /var/www/html \
     && chown -R www-data:www-data /var/www/html/
 
 COPY ./config-dist.php /var/www/html/config-dist.php
