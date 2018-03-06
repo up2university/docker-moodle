@@ -2,7 +2,7 @@
 'auth_saml2';'anyauth'; 1
 'auth_saml2';'autocreate'; 1
 'auth_saml2';'debug'; 1
-'auth_saml2';'duallogin'; 1
+'auth_saml2';'duallogin'; ${SSO_DUAL_LOGIN}
 'auth_saml2';'entityid'; ${SSO_METADATA_URL}
 'auth_saml2';'field_lock_email'; "unlockedifempty"
 'auth_saml2';'field_lock_firstname'; "unlockedifempty"
