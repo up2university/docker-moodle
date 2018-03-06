@@ -64,10 +64,10 @@ RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rew
     && ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
 
 RUN cd /var/www \
-    && wget https://download.moodle.org/download.php/direct/stable33/moodle-latest-33.tgz -O moodle-latest.tgz \
-    && tar zxvf moodle-latest.tgz \
+    && curl 'https://git.moodle.org/gw?p=moodle.git;a=snapshot;h=2faddcdef50d655c3c6c06a6ae03425c1178be42;sf=tgz' -o moodle-latest.tgz \
+    && tar zxf moodle-latest.tgz \
     && rm moodle-latest.tgz \
-    && mv /var/www/moodle /var/www/html \
+    && mv /var/www/moodle* /var/www/html \
     && chown -R www-data:www-data /var/www/html/
 
 COPY ./config-dist.php /var/www/html/config-dist.php
@@ -141,6 +141,13 @@ RUN cd /var/www/html/blocks \
     && unzip block_remlab_manager.zip \
     && rm block_remlab_manager.zip
 
+# Install Category_Enrol (block) - blocks/category_enrol version 0.1 from https://github.com/iucc/moodle-block_category_enrol
+RUN cd /var/www/html/blocks \
+    && curl -L https://github.com/iucc/moodle-block_category_enrol/archive/c17d4c7ca35b27a7804cdf2f740854021a69b418.zip -o block_category_enrol.zip \
+    && unzip block_category_enrol.zip \
+    && mv moodle-block_category_enrol* category_enrol \
+    && rm block_category_enrol.zip
+    
 # Install Easy Enrollments - enrol/easy version 1.1 from https://moodle.org/plugins/enrol_easy
 RUN cd /var/www/html/enrol \
     && curl -L https://moodle.org/plugins/download.php/14067/enrol_easy_moodle34_2017052300.zip -o enrol_easy.zip \
