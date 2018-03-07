@@ -27,7 +27,7 @@
 'theme_fordson';'navbarbkg'; "#ffffff"
 'theme_fordson';'navbarurl'; "#000000"
 'theme_fordson';'searchtoggle'; 0
-'theme_fordson';'slide1content'; \'<p><img src="https://moodle.abtech.edu/pluginfile.php/222513/mod_label/intro/Moodle%20logo.png" alt="Moodle_logo" width="4010" height="1023" class="img-responsive atto_image_button_text-bottom"><br></p>\'
+'theme_fordson';'slide1content'; \'\' 
 'theme_fordson';'slide1title'; "Slideshow test 1"
 'theme_fordson';'titletooltip'; 1
 'theme_fordson';'website'; ${THEME_FORDSON_UP2U_URL}
@@ -53,3 +53,4 @@
 'theme_fordson';'commonlyused';${THEME_FORDSON_ACTIVITY_CHOOSER_COMMONLY_USED}
 'theme_fordson';'showonlycustomactivities';1
 'theme_fordson';'showalltomanager';1
+'theme_fordson';'showslideshow';${THEME_FORDSON_SHOWSLIDESHOW}
