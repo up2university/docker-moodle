@@ -1,13 +1,20 @@
-cp ../../../envs/UP2U_Moodle_400x200.png /
-cp ../../../envs/Moodle_Header_1500x600.jpg /
-chown www-data:www-data /UP2U_Moodle_400x200.png /Moodle_Header_1500x600.jpg
-if [ ! "$(/moosh/moosh.php -n file-list -i "filename='UP2U_Moodle_400x200.png' and filearea like 'logo%' and contextid=1")" = "" ]; then
-    /moosh/moosh.php -n file-list -i "filename='UP2U_Moodle_400x200.png' and filearea like 'logo%' and contextid=1" | /moosh/moosh.php -n file-delete -s
+cp ../../../envs/*.png ../../../envs/*.jpg /
+chown www-data:www-data /*.png /*.jpg
+
+if [ -f /moosh-theme_fordson-files.sh ]; then
+    rm /moosh-theme_fordson-files.sh
 fi
 
-if [ ! "$(/moosh/moosh.php -n file-list -i "filename='Moodle_Header_1500x600.jpg' and filearea='headerdefaultimage' and contextid=1")" = "" ]; then
-    /moosh/moosh.php -n file-list -i "filename='Moodle_Header_1500x600.jpg' and filearea='headerdefaultimage' and contextid=1" | /moosh/moosh.php -n file-delete -s
-fi
-/moosh/moosh.php -n file-delete --flush
-/moosh/moosh.php -n file-upload --contextid=1 --component='core_admin' --filearea='logo' --filepath=/ ../../../UP2U_Moodle_400x200.png
-/moosh/moosh.php -n file-upload --contextid=1 --component='theme_fordson' --filearea='headerdefaultimage' --filepath=/ ../../../Moodle_Header_1500x600.jpg
+for variable in $(grep 'png\|jpg' ../../../envs/theme_fordson.env | cut -f 1 -d '=') ; do
+    set -a
+    filename=$(grep ${variable}= ../../../envs/theme_fordson.env | cut -f 2 -d '=' | sed 's%\\/%%g' | sed 's%\\\"%%g' | sed 's%/%%g')
+    component=$(grep ${variable}} /config/template-theme_fordson-settings.scsv | cut -f 1 -d ';' | sed "s/'//g")
+    filearea=$(grep ${variable}} /config/template-theme_fordson-settings.scsv | cut -f 2 -d ';' | sed "s/'//g")
+    cat /config/template-moosh-theme_fordson-files.sh | envsubst '${filename},${component},${filearea}' >> /moosh-theme_fordson-files.sh
+    set +a
+done
+
+
+chmod a+x /moosh-theme_fordson-files.sh
+/moosh-theme_fordson-files.sh
+
