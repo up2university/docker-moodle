@@ -9,8 +9,8 @@ fi
 
 pushd /var/moodledata/lang
 for lang in $(echo ${MOODLE_LANGUAGE_PACKS} | sed 's/,/ /g'); do
-    curl https://download.moodle.org/download.php/direct/langpack/3.3/${lang}.zip -o ${lang}.zip
-    unzip ${lang}.zip
+    curl https://download.moodle.org/download.php/direct/langpack/3.3/${lang}.zip -O
+    unzip -u ${lang}.zip
     rm ${lang}.zip
 done
 popd
