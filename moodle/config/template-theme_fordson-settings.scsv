@@ -1,0 +1,56 @@
+'';'theme'; "fordson"
+'core_admin';'logo'; ${THEME_FORDSON_MOODLE_LOGO}
+'core_admin';'logocompact'; ${THEME_FORDSON_MOODLE_LOGO_COMPACT}
+'theme_fordson';'activitymenu'; 1
+'theme_fordson';'bodybackground'; "#F1F1F1"
+'theme_fordson';'brandprimary'; "#f26522"
+'theme_fordson';'brandsuccess'; "#f26522"
+'theme_fordson';'brandwarning'; "#f7941e"
+'theme_fordson';'cardbkg'; "#ffffff"
+'theme_fordson';'courseeditingcog'; 1
+'theme_fordson';'createbuttonurl'; ${THEME_FORDSON_CREATE_BUTTON_URL}
+'theme_fordson';'drawerbkg'; "#F1F1F1"
+'theme_fordson';'fpiconcolour'; "#ffffff"
+'theme_fordson';'fpiconnavhover'; "#f26522"
+'theme_fordson';'fpstartwrap'; "#ffffff"
+'theme_fordson';'headercolor'; "#000000"
+'theme_fordson';'headerdefaultimage'; ${THEME_FORDSON_HEADER_DEFAULT_IMAGE}
+'theme_fordson';'headerimagepadding'; "600px"
+'theme_fordson';'headerscreen'; "#F1F1F1"
+'theme_fordson';'headingcolor'; "#f26522"
+'theme_fordson';'learningcontentpadding'; "175px"
+'theme_fordson';'linkcolor'; "#f7941e"
+'theme_fordson';'nav1buttonurl'; ${THEME_FORDSON_NAV1_BUTTON_URL}
+'theme_fordson';'nav2buttonurl'; ${THEME_FORDSON_NAV2_BUTTON_URL}
+'theme_fordson';'nav3buttonurl'; ${THEME_FORDSON_NAV3_BUTTON_URL}
+'theme_fordson';'nav4buttonurl'; ${THEME_FORDSON_NAV4_BUTTON_URL}
+'theme_fordson';'navbarbkg'; "#ffffff"
+'theme_fordson';'navbarurl'; "#000000"
+'theme_fordson';'searchtoggle'; 0
+'theme_fordson';'slide1content'; \'\' 
+'theme_fordson';'slide1title'; "Slideshow test 1"
+'theme_fordson';'titletooltip'; 1
+'theme_fordson';'website'; ${THEME_FORDSON_UP2U_URL}
+'theme_fordson';'shownavclosed';1
+'theme_fordson';'removeprivatefilesnode';1
+'theme_fordson';'removecalendarnode';1
+'theme_fordson';'adddrawermenu';${THEME_FORDSON_DRAWER_MENU}
+'theme_fordson';'catsicon';${THEME_FORDSON_CATSICON}
+'theme_fordson';'fptextbox';${THEME_FORDSON_WELCOME_LOGGED_IN}
+'theme_fordson';'fptextboxlogout';${THEME_FORDSON_WELCOME_NOT_LOGGED_IN}
+'theme_fordson';'backgroundimage';${THEME_FORDSON_BACKGROUND_IMAGE}
+'theme_fordson';'loginimage';${THEME_FORDSON_LOGIN_IMAGE}
+'theme_fordson';'slide1title';${THEME_FORDSON_SLIDESHOW_TITLE_1}
+'theme_fordson';'slide1description';${THEME_FORDSON_SLIDESHOW_DESCRIPTION_1}
+'theme_fordson';'slide1image';${THEME_FORDSON_SLIDESHOW_IMAGE_1}
+'theme_fordson';'slide2title';${THEME_FORDSON_SLIDESHOW_TITLE_2}
+'theme_fordson';'slide2description';${THEME_FORDSON_SLIDESHOW_DESCRIPTION_2}
+'theme_fordson';'slide2image';${THEME_FORDSON_SLIDESHOW_IMAGE_2}
+'theme_fordson';'slide3title';${THEME_FORDSON_SLIDESHOW_TITLE_3}
+'theme_fordson';'slide3description';${THEME_FORDSON_SLIDESHOW_DESCRIPTION_3}
+'theme_fordson';'slide3image';${THEME_FORDSON_SLIDESHOW_IMAGE_3}
+'theme_fordson';'modchoosercustomlabel';${THEME_FORDSON_ACTIVITY_CHOOSER_CUSTOM_LABEL}
+'theme_fordson';'commonlyused';${THEME_FORDSON_ACTIVITY_CHOOSER_COMMONLY_USED}
+'theme_fordson';'showonlycustomactivities';1
+'theme_fordson';'showalltomanager';1
+'theme_fordson';'showslideshow';${THEME_FORDSON_SHOWSLIDESHOW}

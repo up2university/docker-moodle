@@ -6,10 +6,14 @@ services:
 install: true
 
 script:
-- docker build -t up2university/moodle-mysql:"$TRAVIS_BRANCH" mysql
-- docker build -t up2university/moodle:"$TRAVIS_BRANCH" moodle
-- if [ "$TRAVIS_PULL_REQUEST" == "false" ] && ( [ "$TRAVIS_BRANCH" == "master" ] || [ "$TRAVIS_BRANCH" == "develop" ] ); then
+- docker build -t up2university/moodle-mysql:commit-"$TRAVIS_COMMIT" mysql
+- docker build -t up2university/moodle:commit-"$TRAVIS_COMMIT" moodle
+- if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+    docker tag up2university/moodle-mysql:commit-"$TRAVIS_COMMIT" up2university/moodle-mysql:"$TRAVIS_BRANCH";
+    docker tag up2university/moodle:commit-"$TRAVIS_COMMIT" up2university/moodle:"$TRAVIS_BRANCH";
     docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
+    docker push up2university/moodle-mysql:commit-"$TRAVIS_COMMIT";
+    docker push up2university/moodle:commit-"$TRAVIS_COMMIT";
     docker push up2university/moodle-mysql:"$TRAVIS_BRANCH";
     docker push up2university/moodle:"$TRAVIS_BRANCH";
     fi

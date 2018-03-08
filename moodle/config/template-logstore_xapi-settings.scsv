@@ -1,0 +1,5 @@
+'logstore_xapi';'backgroundmode'; 1
+'logstore_xapi';'endpoint'; ${LRS_URL}
+'logstore_xapi';'password'; ${LRS_PASSWORD}
+'logstore_xapi';'username'; ${LRS_USERNAME}
+'tool_log';'enabled_stores'; "logstore_standard,logstore_xapi"

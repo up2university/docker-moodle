@@ -3,17 +3,20 @@ services:
   mysql:
     build: mysql
     env_file:
-      - .env
+      - envs/common.env
     volumes:
-      - /data/moodle-mysql:/var/lib/mysql
+      - ./envs:/envs
+      - ./data/moodle-mysql:/var/lib/mysql
   moodle:
     build: moodle
     links:
       - mysql
     env_file:
-      - .env
+      - envs/common.env
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - /data/letsencrypt:/etc/letsencrypt
+      - ./envs:/envs
+      - ./data/letsencrypt:/etc/letsencrypt
+      - ./data/moodle-moodledata:/var/moodledata
