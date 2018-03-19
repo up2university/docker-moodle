@@ -87,16 +87,6 @@ RUN cd /var/www/html/auth \
     && mv moodle-auth_saml2* saml2 \
     && rm auth_saml2.zip
 
-COPY ./pumoodle/filter.zip /var/www/html/filter/filter.zip
-RUN cd /var/www/html/filter/ \
-    && unzip filter.zip \
-    && rm filter.zip
-
-COPY ./pumoodle/pmksearch.zip /var/www/html/repository/pmksearch.zip
-RUN cd /var/www/html/repository/ \
-    && unzip pmksearch.zip \
-    && rm pmksearch.zip
-
 COPY ./pumoodle/pumukit.zip /var/www/html/lib/editor/atto/plugins/pumukit.zip
 RUN cd /var/www/html/lib/editor/atto/plugins/ \
     && unzip pumukit.zip \
@@ -115,18 +105,21 @@ RUN cd /var/www/html/filter/ \
 COPY ./knockplop/knockplop.zip /var/www/html/mod/
 RUN cd /var/www/html/mod/ \
     && unzip knockplop.zip \
+    && chown -R www-data:www-data knockplop \
     && rm knockplop.zip
 
 # Install H5P - mod/hvp version 1.6 from https://moodle.org/plugins/mod_hvp
 RUN cd /var/www/html/mod \
     && curl -L https://moodle.org/plugins/download.php/15518/mod_hvp_moodle34_2017112800.zip -o mod_hvp.zip \
     && unzip mod_hvp.zip \
+    && chown -R www-data:www-data hvp \
     && rm mod_hvp.zip
 
 # Install EJSapp pack - mod/ejsapp version 3.0 from https://moodle.org/plugins/mod_ejsapp
 RUN cd /var/www/html/mod \
     && curl -L https://moodle.org/plugins/download.php/14370/mod_ejsapp_moodle34_2017062607.zip -o mod_ejsapp.zip \
     && unzip mod_ejsapp.zip \
+    && chown -R www-data:www-data ejsapp \
     && rm mod_ejsapp.zip
 
 # Install EJSapp repository - repository/osp version 3.0 from https://moodle.org/plugins/repository_osp
@@ -147,7 +140,7 @@ RUN cd /var/www/html/blocks \
     && unzip block_category_enrol.zip \
     && mv moodle-block_category_enrol* category_enrol \
     && rm block_category_enrol.zip
-    
+
 # Install Easy Enrollments - enrol/easy version 1.1 from https://moodle.org/plugins/enrol_easy
 RUN cd /var/www/html/enrol \
     && curl -L https://moodle.org/plugins/download.php/14067/enrol_easy_moodle34_2017052300.zip -o enrol_easy.zip \

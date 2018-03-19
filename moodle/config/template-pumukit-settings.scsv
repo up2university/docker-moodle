@@ -6,7 +6,5 @@
 '';'iframe_multivideo_width'; "592px"
 '';'iframe_multivideo_height'; "333px"
 '';'media_plugins_sortorder'; "videojs,youtube,swf"
-'pmksearch';'enablecourseinstances'; 1
-'pmksearch';'enableuserinstances'; 0
 'atto_pumukit';'pumukiturl'; ${PUMUKIT_URL}
 'atto_pumukitpr';'dialogtitle'; "Add Personal Repository video"
