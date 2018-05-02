@@ -108,6 +108,12 @@ RUN cd /var/www/html/mod/ \
     && chown -R www-data:www-data knockplop \
     && rm knockplop.zip
 
+COPY ./questionnaire/questionnaire.zip /var/www/html/mod/
+RUN cd /var/www/html/mod/ \
+    && unzip questionnaire.zip \
+    && chown -R www-data:www-data questionnaire \
+    && rm questionnaire.zip
+
 # Install H5P - mod/hvp version 1.6 from https://moodle.org/plugins/mod_hvp
 RUN cd /var/www/html/mod \
     && curl -L https://moodle.org/plugins/download.php/15518/mod_hvp_moodle34_2017112800.zip -o mod_hvp.zip \
