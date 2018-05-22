@@ -108,9 +108,10 @@ RUN cd /var/www/html/mod/ \
     && chown -R www-data:www-data knockplop \
     && rm knockplop.zip
 
-COPY ./questionnaire/questionnaire.zip /var/www/html/mod/
 RUN cd /var/www/html/mod/ \
+    && wget https://codeload.github.com/PoetOS/moodle-mod_questionnaire/zip/3.4.1 -O questionnaire.zip \
     && unzip questionnaire.zip \
+    && mv moodle-mod_questionnaire-3.4.1 questionnaire \
     && chown -R www-data:www-data questionnaire \
     && rm questionnaire.zip
 
