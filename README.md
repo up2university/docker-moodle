@@ -97,3 +97,7 @@ On deploy upload docker-compose-deploy.yml to the host and run the following the
 docker-compose -f docker-compose-deploy.yml pull
 docker-compose -f docker-compose-deploy.yml up -d
 ```
+
+## Known issues
+
+* Sometimes after deployments, changes don’t work until one opens the settings page for particular component and then save it (without changing anything). Spotted for missing CERNBox in the repository list.
