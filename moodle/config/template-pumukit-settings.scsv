@@ -8,3 +8,5 @@
 '';'media_plugins_sortorder'; "videojs,youtube,swf"
 'atto_pumukit';'pumukiturl'; ${PUMUKIT_URL}
 'atto_pumukitpr';'dialogtitle'; "Add Personal Repository video"
+'atto_pumukitpr';'pumukitprurl'; ${PUMUKIT_PR_URL}
+'atto_pumukitpr';'password'; ${PUMUKIT_PR_SECRET}
