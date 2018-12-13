@@ -35,36 +35,38 @@ CREATE TABLE IF NOT EXISTS `mdl_repository_instances` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table contains one entry for every configured external ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `mdl_repository_instances`
---
+delimiter $$
+CREATE PROCEDURE safe_update()
+BEGIN
+	INSERT INTO `mdl_repository` (type, visible, sortorder)
+		SELECT '${MERLOT_REPOSITORY_TYPE}', 1, (SELECT max(sortorder) + 1 FROM `mdl_repository` LIMIT 1)
+		FROM `mdl_repository`
+	WHERE NOT EXISTS (SELECT id FROM `mdl_repository`
+		WHERE mdl_repository.type = '${MERLOT_REPOSITORY_TYPE}' LIMIT 1) LIMIT 1;
 
-/*!40000 ALTER TABLE `mdl_repository_instances` DISABLE KEYS */;
-/*INSERT INTO `mdl_repository_instances` (name, typeid, userid, contextid, username, password, timecreated, timemodified,readonly) VALUES
-('${OWNCLOUD_REPO_NAME}', (SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${OWNCLOUD_REPOSITORY_TYPE}'),0,1,NULL,NULL,1516380035,1516380035,0)
-WHERE EXISTS (SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${OWNCLOUD_REPOSITORY_TYPE}');*/
-/*INSERT INTO `mdl_repository` (type, visible, sortorder) SELECT '${OWNCLOUD_REPOSITORY_TYPE}', 1, (SELECT max(sortorder) + 1 FROM `mdl_repository`) FROM `mdl_repository`
-WHERE NOT EXISTS (SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${OWNCLOUD_REPOSITORY_TYPE}');*/
+
+	IF EXISTS (SELECT id from `mdl_repository_instances` where typeid=
+				(SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${MERLOT_REPOSITORY_TYPE}' LIMIT 1)) THEN
+		UPDATE `mdl_repository_instances` set name='${MERLOT_REPO_NAME}'
+		WHERE typeid=(SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${MERLOT_REPOSITORY_TYPE}' LIMIT 1);
+	ELSE
+		INSERT INTO `mdl_repository_instances` (name, typeid, userid, contextid, username, password, timecreated, timemodified,readonly)
+		VALUES ('${MERLOT_REPO_NAME}', 
+			(SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${MERLOT_REPOSITORY_TYPE}' LIMIT 1),
+			0,1,NULL,NULL,1516380035,1516380035,0);			
+	END IF;
+END $$
+delimiter ;
+
 START TRANSACTION;
-INSERT INTO `mdl_repository` (type, visible, sortorder)
-SELECT '${OWNCLOUD_REPOSITORY_TYPE}', 1, (SELECT max(sortorder) + 1 FROM `mdl_repository` LIMIT 1)
-FROM `mdl_repository`
-WHERE NOT EXISTS (SELECT id FROM `mdl_repository`
-  WHERE mdl_repository.type = '${OWNCLOUD_REPOSITORY_TYPE}' LIMIT 1) LIMIT 1;
+CALL safe_update();
 COMMIT;
 
 START TRANSACTION;
-DELETE FROM `mdl_repository_instances` WHERE name='${OWNCLOUD_REPO_NAME}' AND
-  typeid=(SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${OWNCLOUD_REPOSITORY_TYPE}' LIMIT 1);
-INSERT INTO `mdl_repository_instances` (name, typeid, userid, contextid, username, password, timecreated, timemodified,readonly)
-SELECT '${OWNCLOUD_REPO_NAME}', (SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${OWNCLOUD_REPOSITORY_TYPE}' LIMIT 1),0,1,NULL,NULL,1516380035,1516380035,0
-FROM `mdl_repository`
-WHERE EXISTS (SELECT id FROM `mdl_repository` WHERE mdl_repository.type = '${OWNCLOUD_REPOSITORY_TYPE}' LIMIT 1) LIMIT 1;
+DROP PROCEDURE IF EXISTS safe_update;
 COMMIT;
-/*!40000 ALTER TABLE `mdl_repository_instances` ENABLE KEYS */;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
