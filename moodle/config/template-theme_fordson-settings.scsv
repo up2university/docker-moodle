@@ -85,4 +85,4 @@
 '';'frontpage';"0,7,6"
 '';'frontpageloggedin';"0,7,2,6"
 '';'defaulthomepage';0
-'theme_fordson'; 'scss'; 'footer#page-footer { font-size: 0.8rem}'
+'theme_fordson'; 'scss'; 'footer#page-footer { font-size: 0.8rem} .socialicon { font-size: 24px; }'
