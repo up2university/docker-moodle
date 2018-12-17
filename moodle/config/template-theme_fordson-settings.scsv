@@ -45,7 +45,7 @@
 'theme_fordson';'slide3image';${THEME_FORDSON_SLIDESHOW_IMAGE_3}
 'theme_fordson';'modchoosercustomlabel';${THEME_FORDSON_ACTIVITY_CHOOSER_CUSTOM_LABEL}
 'theme_fordson';'commonlyused';${THEME_FORDSON_ACTIVITY_CHOOSER_COMMONLY_USED}
-'theme_fordson';'showonlycustomactivities';1
+'theme_fordson';'showonlycustomactivities';0
 'theme_fordson';'showalltomanager';1
 'theme_fordson';'showslideshow';${THEME_FORDSON_SHOWSLIDESHOW}
 'theme_fordson';'slideshowheight'; "350px"
