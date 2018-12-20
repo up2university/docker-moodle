@@ -69,4 +69,11 @@ if [ "${OLD_STAT}" != "${NEW_STAT}" ] || [ "${FIRST_RUN}" == "yes" ]; then
   /moosh-settings.sh
   popd
   cp /moodle-default-settings.php /var/www/html/local/defaults.php
+
+  pushd /var/www/html/mod/hvp/
+  echo "Downloading and installing default h5p activity librarieis"
+  php autoinstallhvplibs.php
+  rm autoinstallhvplibs.php
+  echo "h5p libraries installed"
+  popd
 fi
