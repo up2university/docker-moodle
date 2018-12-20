@@ -7,6 +7,12 @@
 '';'usesitenameforsitepages';1
 '';'defaultblocks';${MOODLE_DEFAULT_BLOCKS}
 '';'debugdisplay';${MOODLE_DEBUG_DISPLAY}
+'';'smtphosts';${MOODLE_MAIL_HOSTS}
+'';'smtpsecure';${MOODLE_MAIL_SECURITY}
+'';'smtpauthtype';${MOODLE_MAIL_AUTHTYPE}
+'';'smtpuser';${MOODLE_MAIL_USER}
+'';'smtppass';${MOODLE_MAIL_PASS}
+'';'smtpmaxbulk';${MOODLE_MAIL_SESSION_LIMIT}
 'logstore_standard';'logguests';0 
 'moodlecourse';'enablecompletion'; 0
 'googledocs';'documentformat'; "rtf"
@@ -21,3 +27,4 @@
 'media_videojs';'audioextensions'; ".mp3,.aac,.flac,.m4a,.oga,.ogg,.wav"
 'media_videojs';'useflash'; 1
 'media_videojs';'videoextensions'; ".mov,.mp4,.m4v,.mpeg,.mpe,.mpg,.ogv,.webm,.flv,.f4v"
+
