@@ -7,6 +7,7 @@
 '';'usesitenameforsitepages';1
 '';'defaultblocks';${MOODLE_DEFAULT_BLOCKS}
 '';'debugdisplay';${MOODLE_DEBUG_DISPLAY}
+'';'additionalhtmlhead';${MOODLE_ADDITIONAL_HTML_HEAD}
 'logstore_standard';'logguests';0 
 'moodlecourse';'enablecompletion'; 0
 'googledocs';'documentformat'; "rtf"
