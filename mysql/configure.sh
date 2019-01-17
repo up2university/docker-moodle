@@ -34,6 +34,7 @@ if [ "${OLD_STAT}" != "${NEW_STAT}" ] || [ "${FIRST_RUN}" == "yes" ]; then
   done
 
   for file in ${ALL_FILES}; do
+    echo ${file}
     cat ${file} | tr -d '\r' | mysql -u root -p${MYSQL_ROOT_PASSWORD} moodle
   done
 fi
