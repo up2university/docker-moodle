@@ -45,7 +45,7 @@
 'theme_fordson';'slide3image';${THEME_FORDSON_SLIDESHOW_IMAGE_3}
 'theme_fordson';'modchoosercustomlabel';${THEME_FORDSON_ACTIVITY_CHOOSER_CUSTOM_LABEL}
 'theme_fordson';'commonlyused';${THEME_FORDSON_ACTIVITY_CHOOSER_COMMONLY_USED}
-'theme_fordson';'showonlycustomactivities';1
+'theme_fordson';'showonlycustomactivities';0
 'theme_fordson';'showalltomanager';1
 'theme_fordson';'showslideshow';${THEME_FORDSON_SHOWSLIDESHOW}
 'theme_fordson';'slideshowheight'; "350px"
@@ -82,7 +82,9 @@
 'theme_fordson'; 'slide1content'; ${THEME_FORDSON_SLIDESHOW_CONTENT_3}
 'theme_fordson'; 'slide2content'; ${THEME_FORDSON_SLIDESHOW_CONTENT_3}
 'theme_fordson'; 'slide3content'; ${THEME_FORDSON_SLIDESHOW_CONTENT_3}
+'theme_fordson'; 'social1'; ${THEME_FORDSON_SOCIAL1}
+'theme_fordson'; 'socialicon1'; ${THEME_FORDSON_SOCIAL1_ICON};
 '';'frontpage';"0,7,6"
-'';'frontpageloggedin';"0,7,6"
+'';'frontpageloggedin';"0,7,2,6"
 '';'defaulthomepage';0
-'theme_fordson'; 'scss'; 'footer#page-footer { font-size: 0.8rem}'
+'theme_fordson'; 'scss'; 'footer#page-footer { font-size: 0.8rem} .socialicon { font-size: 24px }'

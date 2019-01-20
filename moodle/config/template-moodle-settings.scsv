@@ -6,6 +6,8 @@
 '';'noreplyaddress'; ${NO_REPLY_ADDRESS}
 '';'usesitenameforsitepages';1
 '';'defaultblocks';${MOODLE_DEFAULT_BLOCKS}
+'';'debugdisplay';${MOODLE_DEBUG_DISPLAY}
+'logstore_standard';'logguests';0 
 'moodlecourse';'enablecompletion'; 0
 'googledocs';'documentformat'; "rtf"
 'googledocs';'drawingformat'; "pdf"
