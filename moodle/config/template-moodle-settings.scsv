@@ -7,6 +7,7 @@
 '';'usesitenameforsitepages';1
 '';'defaultblocks';${MOODLE_DEFAULT_BLOCKS}
 '';'debugdisplay';${MOODLE_DEBUG_DISPLAY}
+'';'additionalhtmlhead';${MOODLE_ADDITIONAL_HTML_HEAD}
 '';'smtphosts';${MOODLE_MAIL_HOSTS}
 '';'smtpsecure';${MOODLE_MAIL_SECURITY}
 '';'smtpauthtype';${MOODLE_MAIL_AUTHTYPE}
