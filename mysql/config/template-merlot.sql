@@ -35,6 +35,8 @@ CREATE TABLE IF NOT EXISTS `mdl_repository_instances` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table contains one entry for every configured external ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+DROP PROCEDURE IF EXISTS safe_update;
+
 delimiter $$
 CREATE PROCEDURE safe_update()
 BEGIN
