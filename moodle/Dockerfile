@@ -115,6 +115,12 @@ RUN cd /var/www/html/mod \
     && chown -R www-data:www-data hvp \
     && rm mod_hvp.zip
 
+# Copy file to auto install H5P libraries
+COPY ./autoinstallhvplibs.php /var/www/html/mod/hvp/autoinstallhvplibs.php 
+RUN cd /var/www/html/mod/hvp \
+    && chown www-data:www-data autoinstallhvplibs.php \
+    && chmod 775 autoinstallhvplibs.php
+
 # Install EJSapp pack - mod/ejsapp version 3.0 from https://moodle.org/plugins/mod_ejsapp
 RUN cd /var/www/html/mod \
     && curl -L https://moodle.org/plugins/download.php/14370/mod_ejsapp_moodle34_2017062607.zip -o mod_ejsapp.zip \
