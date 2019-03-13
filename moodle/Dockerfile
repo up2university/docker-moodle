@@ -163,7 +163,7 @@ RUN cd /var/www/html/repository \
 
 # Install DSpace Sword plugin (push metadata to Dspace)
 RUN cd /var/www/html/repository \
-    && wget https://github.com/up2university/sword_upload/archive/ce03bd0928ec7ecba46f058aa3660239d2ab777f.zip -O sword_upload.zip \
+    && wget https://github.com/up2university/sword_upload/archive/f718b22a20e28a058759d9587008d3693d32d5be.zip -O sword_upload.zip \
     && unzip sword_upload.zip \
     && rm sword_upload.zip \
     && mv sword_upload* sword_upload \
