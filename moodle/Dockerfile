@@ -64,7 +64,7 @@ RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rew
     && ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
 
 RUN cd /var/www \
-    && curl 'https://git.moodle.org/gw?p=moodle.git;a=snapshot;h=2faddcdef50d655c3c6c06a6ae03425c1178be42;sf=tgz' -o moodle-latest.tgz \
+    && curl 'https://git.moodle.org/gw?p=moodle.git;a=snapshot;h=008baea92aa20ee7ff619d37cc6568b076cda00c;sf=tgz' -o moodle-latest.tgz \
     && tar zxf moodle-latest.tgz \
     && rm moodle-latest.tgz \
     && mv /var/www/moodle* /var/www/html \
@@ -75,7 +75,7 @@ COPY ./config-dist.php /var/www/html/config-dist.php
 RUN echo "certbot --non-interactive --agree-tos --email \$CERT_EMAIL --apache --domains \$VIRTUAL_HOST" > /certbot-setup.sh \
     && chmod 755 /certbot-setup.sh
 
-RUN curl -L https://moodle.org/plugins/download.php/14891/theme_fordson_moodle33_2017092500.zip -o /fordson.zip \
+RUN curl -L https://moodle.org/plugins/download.php/18810/theme_fordson_moodle36_2019111001.zip -o /fordson.zip \
     && cp /fordson.zip /var/www/html/theme/ \
     && cd /var/www/html/theme \
     && unzip fordson.zip \
@@ -110,7 +110,7 @@ RUN cd /var/www/html/mod/ \
 
 # Install H5P - mod/hvp version 1.6 from https://moodle.org/plugins/mod_hvp
 RUN cd /var/www/html/mod \
-    && curl -L https://moodle.org/plugins/download.php/18393/mod_hvp_moodle36_2018113000.zip -o mod_hvp.zip \
+    && curl -L https://moodle.org/plugins/download.php/15518/mod_hvp_moodle34_2017112800.zip -o mod_hvp.zip \
     && unzip mod_hvp.zip \
     && chown -R www-data:www-data hvp \
     && rm mod_hvp.zip
@@ -127,6 +127,13 @@ RUN cd /var/www/html/mod \
     && unzip mod_ejsapp.zip \
     && chown -R www-data:www-data ejsapp \
     && rm mod_ejsapp.zip
+
+# Install Tin Can - TinCan version 1.5 from https://moodle.org/plugins/download.php/18152/mod_tincanlaunch_moodle35_2018110100.zip
+RUN cd /var/www/html/mod \
+    && curl -L https://moodle.org/plugins/download.php/18152/mod_tincanlaunch_moodle35_2018110100.zip -o tin_can.zip \
+    && unzip tin_can.zip \
+    && chown -R www-data:www-data tincanlaunch \
+    && rm tin_can.zip
 
 # Install EJSapp repository - repository/osp version 3.0 from https://moodle.org/plugins/repository_osp
 RUN cd /var/www/html/repository \
@@ -149,7 +156,7 @@ RUN cd /var/www/html/blocks \
 
 # Install Easy Enrollments - enrol/easy version 1.1 from https://moodle.org/plugins/enrol_easy
 RUN cd /var/www/html/enrol \
-    && curl -L https://moodle.org/plugins/download.php/14067/enrol_easy_moodle34_2017052300.zip -o enrol_easy.zip \
+    && curl -L https://moodle.org/plugins/download.php/17781/enrol_easy_moodle36_2018090600.zip -o enrol_easy.zip \
     && unzip enrol_easy.zip \
     && rm enrol_easy.zip
 
@@ -163,7 +170,7 @@ RUN cd /var/www/html/repository \
 
 # Install DSpace Sword plugin (push metadata to Dspace)
 RUN cd /var/www/html/repository \
-    && wget https://github.com/up2university/sword_upload/archive/f718b22a20e28a058759d9587008d3693d32d5be.zip -O sword_upload.zip \
+    && wget https://github.com/up2university/sword_upload/archive/ce03bd0928ec7ecba46f058aa3660239d2ab777f.zip -O sword_upload.zip \
     && unzip sword_upload.zip \
     && rm sword_upload.zip \
     && mv sword_upload* sword_upload \
@@ -179,7 +186,7 @@ RUN cd /var/www/html/repository \
     && chown -R www-data:www-data dspace
 
 # Install logstore_xapi plugin to send learning records to LRS
-RUN curl -L https://github.com/xAPI-vle/moodle-logstore_xapi/releases/download/v2.2.3/xapi.zip -o /xapi.zip \
+RUN curl -L https://github.com/xAPI-vle/moodle-logstore_xapi/releases/download/v4.2.2/xapi.zip -o /xapi.zip \
     && unzip /xapi.zip -d /var/www/html/admin/tool/log/store/ \
     && rm /xapi.zip \
     && chown -R www-data:www-data /var/www/html/admin/tool/log/store/xapi
@@ -194,7 +201,6 @@ RUN wget https://moodle.org/plugins/download.php/15063/moosh_moodle33_2017101600
     && wget https://gist.githubusercontent.com/nadavkav/2e016eb5cdf5634f8d9a4ed02ed32ebb/raw/22ebd3615992bebfc9ca979955f92e0b4a7c0113/Moosh_Command_Moodle23_Config_ConfigGet.php -O /moosh/Moosh/Command/Moodle23/Config/ConfigGet.php \
     && chmod a+x /moosh/moosh.php \
     && ln -s /moosh/moosh.php /usr/local/bin/moosh
-
 
 COPY php.ini /etc/php/7.0/apache2/php.ini
 

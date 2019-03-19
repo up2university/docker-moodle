@@ -1,4 +1,4 @@
-FROM mysql/mysql-server:5.5
+FROM mysql/mysql-server:5.6
 
 RUN yum -y install gettext \
     && yum clean all
