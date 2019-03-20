@@ -8,8 +8,8 @@ pushd /var/www/html
 for val in ${StringArray[@]}; do
    for ((i=1;i<=10;i++));
      do
-       echo "moosh -n role-update-capability -i $i $val prevent 1"
-        moosh -n role-update-capability -i $i $val prevent 1
+       echo "/moosh/moosh.php -n role-update-capability -i $i $val prevent 1"
+        /moosh/moosh.php -n role-update-capability -i $i $val prevent 1
    done
 done
 
