@@ -68,6 +68,7 @@ if [ "${OLD_STAT}" != "${NEW_STAT}" ] || [ "${FIRST_RUN}" == "yes" ]; then
   pushd /var/www/html
   /moosh-settings.sh
   popd
+  
   cp /moodle-default-settings.php /var/www/html/local/defaults.php
 
   pushd /var/www/html/mod/hvp/
@@ -76,4 +77,38 @@ if [ "${OLD_STAT}" != "${NEW_STAT}" ] || [ "${FIRST_RUN}" == "yes" ]; then
   rm autoinstallhvplibs.php
   echo "h5p libraries installed"
   popd
+
+
+
+  for config in /envs/*.env; do
+    set -a
+    source ${config}
+    set +a
+    name=$(grep MOODLE_PHP_CONFIG ${config} | cut -f 1 -d '=' | sed 's/_MOODLE_PHP_CONFIG//g')
+    filevar=${name}_MOODLE_PHP_CONFIG
+    for file in ${!filevar}; do
+      file=$(echo -n ${file} | tr -d '\r')
+      variables=$(echo -n \'; echo -n ${common_vars}; for variable in $(cat ${config} | cut -f -1 -d '='); do echo -n \$${variable}; done; echo -n \')
+      capability=$(echo -n /config/capability-${file} | tr -d '\r')
+      output=$(echo -n /config/${file} | tr -d '\r')
+      cat ${capability-config} | sed "s/^M//g" | tr -d '\r' | envsubst ${variables} > ${output}
+      ALL_FILES="${ALL_FILES} ${output}"
+    done
+  done
+
+  cat ${ALL_FILES} | sed "s/^M//g" | tr -d '\r' | sed 's/^;;$//g' | egrep -v '^$' >> /capability.scsv
+
+  while read line; do
+    role=$( echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 1 -d ';' | sed s/\'//g)
+    capability=$(echo ${line} | sed "s/^M//g" | tr -d '\r'  | cut -f 2 -d ';' | sed s/\'//g)
+    setting=$(echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 3 -d ';')
+    environment=$(echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 4 -d ';')
+    echo /moosh/moosh.php -n role-update-capability -i ${role} ${capability} ${setting} ${environment} | sed "s/^M//g" | tr -d '\r' | sed "s/''$//g" | egrep -v '^/moosh/moosh.php -n config-set$' >> /moosh-capability.sh
+  done < capability.scsv
+
+  chmod a+rx /moosh-capability.sh
+  pushd /var/www/html
+  /moosh-capability.sh
+  popd
+
 fi
