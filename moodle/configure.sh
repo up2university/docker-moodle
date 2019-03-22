@@ -78,25 +78,29 @@ if [ "${OLD_STAT}" != "${NEW_STAT}" ] || [ "${FIRST_RUN}" == "yes" ]; then
   echo "h5p libraries installed"
   popd
 
-
+  ALL_CAPABILITY_SETTINGS=""
 
   for config in /envs/*.env; do
     set -a
     source ${config}
     set +a
-    name=$(grep MOODLE_PHP_CONFIG ${config} | cut -f 1 -d '=' | sed 's/_MOODLE_PHP_CONFIG//g')
-    filevar=${name}_MOODLE_PHP_CONFIG
+    name=$(grep MOODLE_PHP_CAPABILITY ${config} | cut -f 1 -d '=' | sed 's/_MOODLE_PHP_CAPABILITY//g')
+    if [ -z "$name" ]
+	then
+		continue
+	fi
+    filevar=${name}_MOODLE_PHP_CAPABILITY
     for file in ${!filevar}; do
       file=$(echo -n ${file} | tr -d '\r')
       variables=$(echo -n \'; echo -n ${common_vars}; for variable in $(cat ${config} | cut -f -1 -d '='); do echo -n \$${variable}; done; echo -n \')
       capability=$(echo -n /config/capability-${file} | tr -d '\r')
       output=$(echo -n /config/${file} | tr -d '\r')
       cat ${capability-config} | sed "s/^M//g" | tr -d '\r' | envsubst ${variables} > ${output}
-      ALL_FILES="${ALL_FILES} ${output}"
+      ALL_CAPABILITY_SETTINGS="${ALL_CAPABILITY_SETTINGS} ${output}"
     done
   done
 
-  cat ${ALL_FILES} | sed "s/^M//g" | tr -d '\r' | sed 's/^;;$//g' | egrep -v '^$' >> /capability.scsv
+  cat ${ALL_CAPABILITY_SETTINGS} | sed "s/^M//g" | tr -d '\r' | sed 's/^;;$//g' | egrep -v '^$' >> /capability.scsv
 
   while read line; do
     role=$( echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 1 -d ';' | sed s/\'//g)
