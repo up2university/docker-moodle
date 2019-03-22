@@ -84,6 +84,8 @@
 'theme_fordson'; 'slide3content'; ${THEME_FORDSON_SLIDESHOW_CONTENT_3}
 'theme_fordson'; 'social1'; ${THEME_FORDSON_SOCIAL1}
 'theme_fordson'; 'socialicon1'; ${THEME_FORDSON_SOCIAL1_ICON};
+'theme_fordson'; 'linkedin' ; ${THEME_FORDSON_LINKEDIN}
+'theme_fordson'; 'youtube' ; ${THEME_FORDSON_YOUTUBE}
 '';'frontpage';"0,7,6"
 '';'frontpageloggedin';"0,7,2,6"
 '';'defaulthomepage';0
