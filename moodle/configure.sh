@@ -100,19 +100,29 @@ if [ "${OLD_STAT}" != "${NEW_STAT}" ] || [ "${FIRST_RUN}" == "yes" ]; then
     done
   done
 
-  cat ${ALL_CAPABILITY_SETTINGS} | sed "s/^M//g" | tr -d '\r' | sed 's/^;;$//g' | egrep -v '^$' >> /capability.scsv
+  if [[ !  -z  ${ALL_CAPABILITY_SETTINGS}  ]] 
+    then  
+      cat ${ALL_CAPABILITY_SETTINGS} | sed "s/^M//g" | tr -d '\r' | sed 's/^;;$//g' | egrep -v '^$' >> /capability.scsv
 
-  while read line; do
-    role=$( echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 1 -d ';' | sed s/\'//g)
-    capability=$(echo ${line} | sed "s/^M//g" | tr -d '\r'  | cut -f 2 -d ';' | sed s/\'//g)
-    setting=$(echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 3 -d ';')
-    environment=$(echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 4 -d ';')
-    echo /moosh/moosh.php -n role-update-capability -i ${role} ${capability} ${setting} ${environment} | sed "s/^M//g" | tr -d '\r' | sed "s/''$//g" | egrep -v '^/moosh/moosh.php -n config-set$' >> /moosh-capability.sh
-  done < capability.scsv
-
-  chmod a+rx /moosh-capability.sh
-  pushd /var/www/html
-  /moosh-capability.sh
-  popd
-
+      while read line; do
+         if [ -z "$line" ]
+           then
+             continue
+           else
+             role=$( echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 1 -d ';' | sed s/\'//g)
+             capability=$(echo ${line} | sed "s/^M//g" | tr -d '\r'  | cut -f 2 -d ';' | sed s/\'//g)
+             setting=$(echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 3 -d ';')
+             environment=$(echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 4 -d ';')
+             echo /moosh/moosh.php -n role-update-capability -i ${role} ${capability} ${setting} ${environment} | sed "s/^M//g" | tr -d '\r' | sed "s/''$//g" | egrep -v '^/moosh/moosh.php -n config-set$' >> /moosh-capability.sh
+         fi
+      done < capability.scsv
+  
+      if [ -f "/moosh-capability.sh" ]
+        then
+          chmod a+rx /moosh-capability.sh
+          pushd /var/www/html
+          /moosh-capability.sh
+          popd
+      fi
+  fi
 fi
