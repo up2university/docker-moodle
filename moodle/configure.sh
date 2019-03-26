@@ -113,7 +113,7 @@ if [ "${OLD_STAT}" != "${NEW_STAT}" ] || [ "${FIRST_RUN}" == "yes" ]; then
              capability=$(echo ${line} | sed "s/^M//g" | tr -d '\r'  | cut -f 2 -d ';' | sed s/\'//g)
              setting=$(echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 3 -d ';')
              environment=$(echo ${line} | sed "s/^M//g" | tr -d '\r' | cut -f 4 -d ';')
-             echo /moosh/moosh.php -n role-update-capability -i ${role} ${capability} ${setting} ${environment} | sed "s/^M//g" | tr -d '\r' | sed "s/''$//g" | egrep -v '^/moosh/moosh.php -n config-set$' >> /moosh-capability.sh
+             echo /moosh/moosh.php -n role-update-capability ${role} ${capability} ${setting} ${environment} | sed "s/^M//g" | tr -d '\r' | sed "s/''$//g" | egrep -v '^/moosh/moosh.php -n config-set$' >> /moosh-capability.sh
          fi
       done < capability.scsv
   
