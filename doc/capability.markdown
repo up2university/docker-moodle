@@ -15,5 +15,10 @@ CAPABILITY="moodle/site:approvecourse"
 OPERATION="prevent"
 FLAG=1
 
+FRONTPAGE="frontpage"
+CAPABILITY="moodle/site:approvecourse"
+OPERATION="allow"
+FLAG=1
+
 "capability.env"
 EVERY\_MOODLE\_PHP\_CAPABILITY="moodle-settings.scsv"
