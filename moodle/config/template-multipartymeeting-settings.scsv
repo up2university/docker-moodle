@@ -1,0 +1,3 @@
+'';'chat_serverhost'; ${WWWROOT}
+'';'multipartymeeting_baseurl'; ${MULTIPARTYMEETING_BASEURL}
+'';'multipartymeeting_roomlength'; 8
