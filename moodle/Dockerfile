@@ -162,7 +162,7 @@ RUN cd /var/www/html/enrol \
 
 # Install Plugin to use CERNBox as remote repository
 RUN cd /var/www/html/repository \
-    && wget https://github.com/cernbox/moodle-repository_owncloud/archive/cb23ba7b5096bd46a9569c69067f1f33a0943020.zip -O owncloud.zip \
+    && wget https://moodle.org/plugins/download.php/18330/repository_owncloud_moodle36_2018112300.zip  -O owncloud.zip \
     && unzip owncloud.zip \
     && rm owncloud.zip \
     && mv moodle-repository_owncloud* owncloud \
