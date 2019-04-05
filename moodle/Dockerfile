@@ -110,7 +110,7 @@ RUN cd /var/www/html/mod/ \
 
 # Install H5P - mod/hvp version 1.6 from https://moodle.org/plugins/mod_hvp
 RUN cd /var/www/html/mod \
-    && curl -L https://moodle.org/plugins/download.php/15518/mod_hvp_moodle34_2017112800.zip -o mod_hvp.zip \
+    && curl -L https://moodle.org/plugins/download.php/19174/mod_hvp_moodle36_2019031301.zip  -o mod_hvp.zip \
     && unzip mod_hvp.zip \
     && chown -R www-data:www-data hvp \
     && rm mod_hvp.zip
