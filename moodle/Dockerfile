@@ -137,7 +137,7 @@ RUN cd /var/www/html/mod \
 
 # Install EJSapp repository - repository/osp version 3.0 from https://moodle.org/plugins/repository_osp
 RUN cd /var/www/html/repository \
-    && curl -L https://moodle.org/plugins/download.php/13971/repository_osp_moodle34_2017051403.zip -o repository_osp.zip \
+    && curl -L https://moodle.org/plugins/download.php/17745/repository_osp_moodle36_2017051500.zip -o repository_osp.zip \
     && unzip repository_osp.zip \
     && rm repository_osp.zip
 
