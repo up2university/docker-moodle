@@ -123,7 +123,7 @@ RUN cd /var/www/html/mod/hvp \
 
 # Install EJSapp pack - mod/ejsapp version 3.0 from https://moodle.org/plugins/mod_ejsapp
 RUN cd /var/www/html/mod \
-    && curl -L https://moodle.org/plugins/download.php/14370/mod_ejsapp_moodle34_2017062607.zip -o mod_ejsapp.zip \
+    && curl -L https://moodle.org/plugins/download.php/19100/mod_ejsapp_moodle36_2019030300.zip  -o mod_ejsapp.zip \
     && unzip mod_ejsapp.zip \
     && chown -R www-data:www-data ejsapp \
     && rm mod_ejsapp.zip
