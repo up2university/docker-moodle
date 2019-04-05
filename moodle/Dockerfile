@@ -162,10 +162,9 @@ RUN cd /var/www/html/enrol \
 
 # Install Plugin to use CERNBox as remote repository
 RUN cd /var/www/html/repository \
-    && wget https://moodle.org/plugins/download.php/18330/repository_owncloud_moodle36_2018112300.zip  -O owncloud.zip \
+    && wget https://moodle.org/plugins/download.php/18330/repository_owncloud_moodle36_2018112300.zip -O owncloud.zip \
     && unzip owncloud.zip \
     && rm owncloud.zip \
-    && mv moodle-repository_owncloud* owncloud \
     && chown -R www-data:www-data owncloud
 
 # Install DSpace Sword plugin (push metadata to Dspace)
