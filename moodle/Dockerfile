@@ -143,7 +143,7 @@ RUN cd /var/www/html/repository \
 
 # Install EJSapp remote lab manager - block/remlab_manager version 3.0 from https://moodle.org/plugins/block_remlab_manager
 RUN cd /var/www/html/blocks \
-    && curl -L https://moodle.org/plugins/download.php/13982/block_remlab_manager_moodle34_2017051500.zip -o block_remlab_manager.zip \
+    && curl -L https://moodle.org/plugins/download.php/19101/block_remlab_manager_moodle36_2019030300.zip -o block_remlab_manager.zip \
     && unzip block_remlab_manager.zip \
     && rm block_remlab_manager.zip
 
