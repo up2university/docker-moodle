@@ -128,7 +128,8 @@ BEGIN
     UPDATE `mdl_oauth2_issuer` SET
       name='${CERNBOX_NAME}',
       clientid='${CERNBOX_CLIENT_ID}',
-      clientsecret='${CERNBOX_CLIENT_SECRET}'
+      clientsecret='${CERNBOX_CLIENT_SECRET}',
+      basicauth=${CERNBOX_BASIC_AUTH}
     WHERE baseurl='${CERNBOX_URL}';
   ELSE
     INSERT INTO `mdl_oauth2_issuer`
@@ -166,7 +167,7 @@ BEGIN
        '',
        NULL,
        0,
-       0,
+       1,
        1,
        0);
   END IF;
