@@ -115,6 +115,13 @@ RUN cd /var/www/html/mod \
     && chown -R www-data:www-data hvp \
     && rm mod_hvp.zip
 
+# Install VPL - mod/vpl version 1.6 from https://moodle.org/plugins/mod_vpl
+RUN cd /var/www/html/mod \
+    && curl -L https://moodle.org/plugins/download.php/17595/mod_vpl_moodle35_2018081117.zip -o mod_vpl.zip \
+    && unzip mod_vpl.zip \
+    && chown -R www-data:www-data vpl \
+    && rm mod_vpl.zip
+
 # Copy file to auto install H5P libraries
 COPY ./autoinstallhvplibs.php /var/www/html/mod/hvp/autoinstallhvplibs.php 
 RUN cd /var/www/html/mod/hvp \
