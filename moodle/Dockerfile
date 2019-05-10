@@ -200,6 +200,7 @@ RUN wget https://moodle.org/plugins/download.php/15063/moosh_moodle33_2017101600
     && wget https://gist.githubusercontent.com/nadavkav/2e016eb5cdf5634f8d9a4ed02ed32ebb/raw/22ebd3615992bebfc9ca979955f92e0b4a7c0113/Moosh_Command_Moodle23_Config_ConfigGet.php -O /moosh/Moosh/Command/Moodle23/Config/ConfigGet.php \
     && chmod a+x /moosh/moosh.php
 
+COPY icons/cernbox_icon.svg /var/www/html/repository/owncloud/pix/icon.svg
 
 COPY php.ini /etc/php/7.0/apache2/php.ini
 
