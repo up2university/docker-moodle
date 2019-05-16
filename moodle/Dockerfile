@@ -186,7 +186,7 @@ RUN cd /var/www/html/repository \
     && chown -R www-data:www-data dspace
 
 # Install logstore_xapi plugin to send learning records to LRS
-RUN curl -L https://github.com/xAPI-vle/moodle-logstore_xapi/releases/download/v2.2.3/xapi.zip -o /xapi.zip \
+RUN curl -L https://github.com/xAPI-vle/moodle-logstore_xapi/releases/download/v4.2.5/xapi.zip -o /xapi.zip \
     && unzip /xapi.zip -d /var/www/html/admin/tool/log/store/ \
     && rm /xapi.zip \
     && chown -R www-data:www-data /var/www/html/admin/tool/log/store/xapi
