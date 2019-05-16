@@ -86,5 +86,7 @@
 'theme_fordson'; 'socialicon1'; ${THEME_FORDSON_SOCIAL1_ICON};
 '';'frontpage';"0,7,2"
 '';'frontpageloggedin';"0,7,2"
+'theme_fordson'; 'linkedin' ; ${THEME_FORDSON_LINKEDIN}
+'theme_fordson'; 'youtube' ; ${THEME_FORDSON_YOUTUBE}
 '';'defaulthomepage';0
 'theme_fordson'; 'scss'; 'footer#page-footer { font-size: 0.8rem} .socialicon { font-size: 24px }'
