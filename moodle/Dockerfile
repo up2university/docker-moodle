@@ -135,13 +135,6 @@ RUN cd /var/www/html/mod \
     && chown -R www-data:www-data ejsapp \
     && rm mod_ejsapp.zip
 
-# Install Tin Can - TinCan version 1.5 from https://moodle.org/plugins/download.php/18152/mod_tincanlaunch_moodle35_2018110100.zip
-RUN cd /var/www/html/mod \
-    && curl -L https://moodle.org/plugins/download.php/18152/mod_tincanlaunch_moodle35_2018110100.zip -o tin_can.zip \
-    && unzip tin_can.zip \
-    && chown -R www-data:www-data tincanlaunch \
-    && rm tin_can.zip
-
 # Install EJSapp repository - repository/osp version 3.0 from https://moodle.org/plugins/repository_osp
 RUN cd /var/www/html/repository \
     && curl -L https://moodle.org/plugins/download.php/17745/repository_osp_moodle36_2017051500.zip -o repository_osp.zip \
