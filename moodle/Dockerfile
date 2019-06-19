@@ -42,6 +42,7 @@ RUN apt-get update \
         php7.0-mcrypt \
         certbot \
         python-certbot-apache \
+        sudo \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/www/html
 
