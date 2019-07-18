@@ -14,6 +14,7 @@
 '';'smtpuser';${MOODLE_MAIL_USER}
 '';'smtppass';${MOODLE_MAIL_PASS}
 '';'smtpmaxbulk';${MOODLE_MAIL_SESSION_LIMIT}
+'';'enablestats'; 1
 'logstore_standard';'logguests';0 
 'moodlecourse';'enablecompletion'; 0
 'googledocs';'documentformat'; "rtf"

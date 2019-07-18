@@ -186,6 +186,13 @@ BEGIN
 
   	UPDATE `mdl_oauth2_endpoint` set url='${OWNCLOUD_OCS_ENDPOINT}' where name='ocs_endpoint' 
   		AND issuerid=(SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.baseurl='${OWNCLOUD_URL}');  		
+	UPDATE `mdl_oauth2_endpoint` set url='${OWNCLOUD_USERINFO_ENDPOINT}' where name='userinfo_endpoint'
+		AND issuerid=(SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.baseurl='${OWNCLOUD_URL}');
+
+	INSERT IGNORE INTO `mdl_oauth2_endpoint` (timecreated, timemodified, usermodified, name, url, issuerid)
+	VALUES
+	  (1516290794,1516711057,69,'userinfo_endpoint','${OWNCLOUD_USERINFO_ENDPOINT}',
+	    (SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.baseurl='${OWNCLOUD_URL}' LIMIT 1));
   ELSE 
   	INSERT INTO `mdl_oauth2_endpoint` (timecreated, timemodified, usermodified, name, url, issuerid)
   	VALUES
@@ -196,6 +203,8 @@ BEGIN
 	  (1516290774,1516710570,69,'webdav_endpoint','${OWNCLOUD_WEBDAV_ENDPOINT}',
 	    (SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.baseurl='${OWNCLOUD_URL}' LIMIT 1)),
 	  (1516290794,1516711057,69,'ocs_endpoint','${OWNCLOUD_OCS_ENDPOINT}',
+	    (SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.baseurl='${OWNCLOUD_URL}' LIMIT 1)),
+	  (1516290794,1516711057,69,'userinfo_endpoint','${OWNCLOUD_USERINFO_ENDPOINT}',
 	    (SELECT id FROM `mdl_oauth2_issuer` WHERE mdl_oauth2_issuer.baseurl='${OWNCLOUD_URL}' LIMIT 1));
   END IF;
 
