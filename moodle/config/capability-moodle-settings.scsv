@@ -70,3 +70,15 @@
 'guest';'moodle/role:manage';'prevent'; 1
 'user';'moodle/role:manage';'prevent'; 1
 'frontpage';'moodle/role:manage';'prevent'; 1
+'editingstudent';'mod/hvp:getcachedassets';'allow'; 1
+'editingstudent';'mod/hvp:addinstance';'allow'; 1
+'editingstudent';'mod/hvp:installrecommendedh5plibraries';'allow'; 1
+'editingstudent';'mod/hvp:getembedcode';'allow'; 1
+'editingstudent';'mod/hvp:getexport';'allow'; 1
+'editingstudent';'mod/hvp:manage';'allow'; 1
+'editingstudent';'mod/hvp:savecontentuserdata';'allow'; 1
+'editingstudent';'mod/hvp:saveresults';'allow'; 1
+'editingstudent';'mod/hvp:view';'allow'; 1
+'editingstudent';'mod/hvp:viewallresults';'allow'; 1
+'editingstudent';'moodle/site:manageblocks';'allow'; 1
+'editingstudent';'moodle/course:manageactivities';'allow'; 1
