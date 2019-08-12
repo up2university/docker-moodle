@@ -42,6 +42,7 @@ RUN apt-get update \
         php7.0-mcrypt \
         certbot \
         python-certbot-apache \
+	sudo \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/www/html
 
@@ -107,6 +108,13 @@ RUN cd /var/www/html/mod/ \
     && unzip knockplop.zip \
     && chown -R www-data:www-data knockplop \
     && rm knockplop.zip
+
+COPY ./multipartymeeting/multipartymeeting.zip /var/www/html/mod/
+RUN cd /var/www/html/mod/ \
+    && unzip multipartymeeting.zip \
+    && chown -R www-data:www-data multipartymeeting \
+    && rm multipartymeeting.zip
+
 
 # Install H5P - mod/hvp version 1.6 from https://moodle.org/plugins/mod_hvp
 RUN cd /var/www/html/mod \
