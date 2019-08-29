@@ -198,6 +198,13 @@ RUN curl -L https://github.com/xAPI-vle/moodle-logstore_xapi/releases/download/v
     && rm /xapi.zip \
     && chown -R www-data:www-data /var/www/html/admin/tool/log/store/xapi
 
+# Install Moodle stats - up2university/moodle_statistics from https://github.com/up2university/moodle_statistics 
+RUN cd /var/www/html/local \
+    && curl -L https://github.com/up2university/moodle_statistics/archive/34fcbb828abfcb9ce2b67a8b8979a4892b77ebe6.zip -o moodle_stat.zip \
+    && unzip moodle_stat.zip \
+    && mv moodle_statistics* statistics \
+    && rm moodle_stat.zip
+
 COPY crontab /crontab
 RUN crontab -u www-data /crontab
 
