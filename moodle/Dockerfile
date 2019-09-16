@@ -109,12 +109,17 @@ RUN cd /var/www/html/mod/ \
     && chown -R www-data:www-data knockplop \
     && rm knockplop.zip
 
+RUN cd /var/www/html/mod \
+    && curl -L https://moodle.org/plugins/download.php/19726/mod_questionnaire_moodle37_2018110101.zip -o questionnaire.zip \
+    && unzip questionnaire.zip \
+    && chown -R www-data:www-data questionnaire \
+    && rm questionnaire.zip
+
 COPY ./multipartymeeting/multipartymeeting.zip /var/www/html/mod/
 RUN cd /var/www/html/mod/ \
     && unzip multipartymeeting.zip \
     && chown -R www-data:www-data multipartymeeting \
     && rm multipartymeeting.zip
-
 
 # Install H5P - mod/hvp version 1.6 from https://moodle.org/plugins/mod_hvp
 RUN cd /var/www/html/mod \
