@@ -117,8 +117,9 @@ RUN cd /var/www/html/mod \
 
 # Install VPL - mod/vpl version 1.6 from https://moodle.org/plugins/mod_vpl
 RUN cd /var/www/html/mod \
-    && curl -L https://moodle.org/plugins/download.php/17595/mod_vpl_moodle35_2018081117.zip -o mod_vpl.zip \
+    && curl -L https://github.com/jcrodriguez-dis/moodle-mod_vpl/archive/bc98f46fcac852d1d237a5ed700fe4030b385aa9.zip -o mod_vpl.zip \
     && unzip mod_vpl.zip \
+    && mv moodle-mod_vpl-bc98f46fcac852d1d237a5ed700fe4030b385aa9 vpl \
     && chown -R www-data:www-data vpl \
     && rm mod_vpl.zip
 
