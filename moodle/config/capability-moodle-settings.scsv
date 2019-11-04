@@ -38,9 +38,9 @@
 'guest';'moodle/course:reviewotherusers';'prevent'; 1
 'user';'moodle/course:reviewotherusers';'prevent'; 1
 'frontpage';'moodle/course:reviewotherusers';'prevent'; 1
-'manager';'moodle/role:assign';'prevent'; 1
-'coursecreator';'moodle/role:assign';'prevent'; 1
-'editingteacher';'moodle/role:assign';'prevent'; 1
+'manager';'moodle/role:assign';'allow'; 1
+'coursecreator';'moodle/role:assign';'allow'; 1
+'editingteacher';'moodle/role:assign';'allow'; 1
 'teacher';'moodle/role:assign';'prevent'; 1
 'student';'moodle/role:assign';'prevent'; 1
 'guest';'moodle/role:assign';'prevent'; 1
