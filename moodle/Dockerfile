@@ -42,6 +42,7 @@ RUN apt-get update \
         php7.0-mcrypt \
         certbot \
         python-certbot-apache \
+	sudo \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/www/html
 
@@ -108,6 +109,18 @@ RUN cd /var/www/html/mod/ \
     && chown -R www-data:www-data knockplop \
     && rm knockplop.zip
 
+RUN cd /var/www/html/mod \
+    && curl -L https://moodle.org/plugins/download.php/19726/mod_questionnaire_moodle37_2018110101.zip -o questionnaire.zip \
+    && unzip questionnaire.zip \
+    && chown -R www-data:www-data questionnaire \
+    && rm questionnaire.zip
+
+COPY ./multipartymeeting/multipartymeeting.zip /var/www/html/mod/
+RUN cd /var/www/html/mod/ \
+    && unzip multipartymeeting.zip \
+    && chown -R www-data:www-data multipartymeeting \
+    && rm multipartymeeting.zip
+
 # Install H5P - mod/hvp version 1.6 from https://moodle.org/plugins/mod_hvp
 RUN cd /var/www/html/mod \
     && curl -L https://moodle.org/plugins/download.php/19174/mod_hvp_moodle36_2019031301.zip  -o mod_hvp.zip \
@@ -117,8 +130,9 @@ RUN cd /var/www/html/mod \
 
 # Install VPL - mod/vpl version 1.6 from https://moodle.org/plugins/mod_vpl
 RUN cd /var/www/html/mod \
-    && curl -L https://moodle.org/plugins/download.php/17595/mod_vpl_moodle35_2018081117.zip -o mod_vpl.zip \
+    && curl -L https://github.com/jcrodriguez-dis/moodle-mod_vpl/archive/bc98f46fcac852d1d237a5ed700fe4030b385aa9.zip -o mod_vpl.zip \
     && unzip mod_vpl.zip \
+    && mv moodle-mod_vpl-bc98f46fcac852d1d237a5ed700fe4030b385aa9 vpl \
     && chown -R www-data:www-data vpl \
     && rm mod_vpl.zip
 
@@ -189,6 +203,13 @@ RUN curl -L https://github.com/xAPI-vle/moodle-logstore_xapi/releases/download/v
     && unzip /xapi.zip -d /var/www/html/admin/tool/log/store/ \
     && rm /xapi.zip \
     && chown -R www-data:www-data /var/www/html/admin/tool/log/store/xapi
+
+# Install Moodle stats - up2university/moodle_statistics from https://github.com/up2university/moodle_statistics 
+RUN cd /var/www/html/local \
+    && curl -L https://github.com/up2university/moodle_statistics/archive/34fcbb828abfcb9ce2b67a8b8979a4892b77ebe6.zip -o moodle_stat.zip \
+    && unzip moodle_stat.zip \
+    && mv moodle_statistics* statistics \
+    && rm moodle_stat.zip
 
 COPY crontab /crontab
 RUN crontab -u www-data /crontab

@@ -2,6 +2,8 @@ set -a
 source /envs/moodle*.env
 set +a
 
+/moosh/moosh.php -n role-create -d "Editing Student" -a student -n "Editing Student" editingstudent
+
 if [ ! -d /var/moodledata/lang ]; then
     mkdir /var/moodledata/lang
     chown www-data:www-data /var/moodledata/lang

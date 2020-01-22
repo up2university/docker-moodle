@@ -1,1 +1,2 @@
-0 1 * * * php /var/www/html/admin/cli/cron.php
+* * * * * php /var/www/html/admin/cli/cron.php &>/dev/null
+
