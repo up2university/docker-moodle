@@ -13,6 +13,10 @@ for mod in ${THEME_FORDSON_HIDE_MODS}; do
     /moosh/moosh.php -n module-manage hide ${mod}
 done
 
+for mod in ${THEME_FORDSON_SHOW_MODS}; do 
+    /moosh/moosh.php -n module-manage show ${mod}
+done
+
 for variable in $(grep 'png\|jpg' ../../../envs/theme_fordson.env | cut -f 1 -d '=') ; do
     set -a
     filename=$(grep ${variable}= ../../../envs/theme_fordson.env | cut -f 2 -d '=' | sed 's%\\/%%g' | sed 's%\\\"%%g' | sed 's%/%%g')
