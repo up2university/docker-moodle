@@ -199,8 +199,9 @@ RUN cd /var/www/html/repository \
     && chown -R www-data:www-data dspace
 
 # Install logstore_xapi plugin to send learning records to LRS
-RUN curl -L https://github.com/up2university/moodle-logstore_xapi/archive/34154845e5c74296d6d0e53ef0c158c2e7f09293.zip -o /xapi.zip \
+RUN curl -L https://github.com/up2university/moodle-logstore_xapi/archive/f1026180d5e61191b3e12b432a40ea8cc202727b.zip -o /xapi.zip \
     && unzip /xapi.zip -d /var/www/html/admin/tool/log/store/ \
+    && mv /var/www/html/admin/tool/log/store/moodle-logstore_xapi-f1026180d5e61191b3e12b432a40ea8cc202727b /var/www/html/admin/tool/log/store/xapi \
     && rm /xapi.zip \
     && chown -R www-data:www-data /var/www/html/admin/tool/log/store/xapi
 
