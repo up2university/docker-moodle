@@ -214,6 +214,7 @@ RUN cd /var/www/html/local \
 
 COPY crontab /crontab
 RUN crontab -u www-data /crontab
+CMD ["crond", "-f", "-d", "8"]
 
 # Install Moosh
 RUN wget https://moodle.org/plugins/download.php/15063/moosh_moodle33_2017101600.zip -O /moosh.zip \
