@@ -63,7 +63,7 @@
 'theme_fordson'; 'nav2buttontext'; ${THEME_FORDSON_NAV2_BUTTON_TEXT}
 'theme_fordson'; 'nav3icon'; ${THEME_FORDSON_NAV3_ICON}
 'theme_fordson'; 'nav3buttontext'; ${THEME_FORDSON_NAV3_BUTTON_TEXT}
-'theme_fordson'; 'togglemarketing'; 1
+'theme_fordson'; 'togglemarketing'; 2
 'theme_fordson'; 'marketing1'; ${THEME_FORDSON_MARKETING1}
 'theme_fordson'; 'marketing1image'; ${THEME_FORDSON_MARKETING1_IMAGE}
 'theme_fordson'; 'marketing1buttontext'; ${THEME_FORDSON_MARKETING1_BUTTON_TEXT}
@@ -84,10 +84,10 @@
 'theme_fordson'; 'slide3content'; ${THEME_FORDSON_SLIDESHOW_CONTENT_3}
 'theme_fordson'; 'social1'; ${THEME_FORDSON_SOCIAL1}
 'theme_fordson'; 'socialicon1'; ${THEME_FORDSON_SOCIAL1_ICON};
-'';'frontpage';"0,7,2"
-'';'frontpageloggedin';"0,7,2"
+'';'frontpage';"7,2"
+'';'frontpageloggedin';"7,2"
 'theme_fordson'; 'linkedin' ; ${THEME_FORDSON_LINKEDIN}
 'theme_fordson'; 'youtube' ; ${THEME_FORDSON_YOUTUBE}
 '';'defaulthomepage';0
 'theme_fordson'; 'scss'; 'footer#page-footer { font-size: 0.8rem} .socialicon { font-size: 24px }'
-'theme_fordson'; 'scsspre'; 'div#page>div#learningcontent{background-color:rgba(255,255,255,.9)!important}'
+'theme_fordson'; 'scsspre'; '#page>#learningcontent{background-color:rgba(255,255,255,.9)!important} #page-site-index>#page-wrapper>#page>#learningcontent>#page-header{display:none!important} #coursesearch{display:block!important} .fptextbox{padding-right:3em!important} .fptextbox{padding-left:3em!important}'
